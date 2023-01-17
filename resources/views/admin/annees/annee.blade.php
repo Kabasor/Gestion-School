@@ -47,7 +47,7 @@
                                 <tr>
                                     <?php $i++; ?>
                                     <th scope="row">{{$i}} </th>
-                                    <td>{{$annee->name}}</td>
+                                    <td>{{$annee->anneescolaire}}</td>
                                     <td>{{$annee->description}}</td>
                                     <td>
                                         @include('admin.annees.edit-annee')

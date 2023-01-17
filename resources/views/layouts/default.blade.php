@@ -1,5 +1,5 @@
  <!-- header -->
- @include('layouts.partials.header')
+@include('layouts.partials.header')
  <!-- #header -->
 
   <!-- topbar -->
@@ -12,7 +12,7 @@
 
   <!-- rigth-bar -->
 @include('layouts.partials.rigthsidebar')
- <!-- #rigth-bar -->
- @yield('content')
+    <!-- #rigth-bar -->
+    @yield('content')
 
  @include('layouts.partials.footer')

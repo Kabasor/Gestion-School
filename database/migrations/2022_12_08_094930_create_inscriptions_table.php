@@ -15,12 +15,17 @@ return new class extends Migration
     {
         Schema::create('inscriptions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('eleve_id');
-            $table->date('dateInscription')->nullable();
-            $table->string('anneeInscription')->nullable();
-            $table->float('fraisInscription')->nullable();
-            $table->float('montanInscription')->nullable();
-            $table->foreign('eleve_id')->references('id')->on('eleves')->onDelete('cascade');
+            $table->string('libelle')->nullable();
+            $table->string('slug')->nullable();
+            $table->foreignId('eleve_id')->nullable()->constrained('eleves')->index();
+            $table->foreignId('annee_scolarite_id')->nullable()->constrained('annee_scolarites');
+            $table->double('remise')->unsigned()->nullable();
+            $table->double('montant')->unsigned()->nullable();
+            $table->double('montant_inscription')->unsigned()->nullable();
+            $table->double('montant_paye')->unsigned()->nullable();
+            $table->double('reste')->unsigned()->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

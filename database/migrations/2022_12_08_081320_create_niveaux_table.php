@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('niveaux', function (Blueprint $table) {
             $table->id();
             $table->string('libelle')->nullable();
-            $table->text('description')->nullable();
+            $table->mediumText('description')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

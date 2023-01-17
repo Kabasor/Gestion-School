@@ -98,10 +98,10 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="form">
-                                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror " placeholder="Année Scolaire">
-                                        @error('name')
+                                        <input type="text" name="annee_scolaire" class="form-control @error('annee_scolaire') is-invalid @enderror " placeholder="Année Scolaire">
+                                        @error('annee_scolaire')
                                         <div class="invalid-feedback">
-                                            {{ $errors->first('name') }}
+                                            {{ $errors->first('annee_scolaire') }}
                                         </div>
                                         @enderror
                                     </div>
@@ -110,16 +110,26 @@
                             </div>
                         </div>
                         <div class="row clearfix">
-                            <div class="col-md-12">
+                            <div class="col-sm-6">
                                 <div class="form-group">
-                                    <div class="form">
-                                        <textarea name="description" class="form-control @error('description') is-invalid @enderror" placeholder="description" id="" cols="30" rows="10"></textarea>
-                                        @error('description')
+                                    <label for="date_debut">Début de L'année <span class="text-danger">*</span> :</label>
+                                    <input type="date" class="form-control @error('date_debut') is-invalid @enderror" name="date_debut" value=" {{old('date_debut')}}" />
+                                    @error('date_debut')
                                         <div class="invalid-feedback">
-                                            {{ $errors->first('description') }}
+                                            {{ $errors->first('date_debut') }}
                                         </div>
-                                        @enderror
-                                    </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="date_fin">Fin de L'année <span class="text-danger">*</span> :</label>
+                                    <input type="date" class="form-control @error('date_fin') is-invalid @enderror" name="date_fin" value=" {{old('date_fin')}}" />
+                                    @error('date_fin')
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('date_fin') }}
+                                        </div>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
