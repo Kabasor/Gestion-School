@@ -84,27 +84,27 @@
                                                                 <td>{{ $eleve->matricule }}</td>
                                                                 <td>{{ $eleve->nom }}</td>
                                                                 <td>{{ $eleve->prenom }}</td>
-                                                                <td>{{ $eleve->date_naissance->format('d/m/Y')}}</td>
+                                                                <td>{{ $eleve->date_naissance->format('d/m/Y') }}</td>
                                                                 <td>{{ $eleve->lieu_naissance }}</td>
                                                                 <td>{{ $eleve->sexe }}</td>
                                                                 <td>{{ $eleve->classe->libelle }}</td>
 
-                                                                <td >
-                                                                    <div class="d-flex">
-                                                                        <a href="{{route('eleve.show',$eleve)}}" class="btn btn-tbl-edit">
-                                                                            <i class="material-icons">remove_red_eye</i>
-                                                                        </a>
-                                                                        <a href="{{route('eleve.edit',$eleve)}}" class="btn btn-tbl-edit">
-                                                                            <i class="material-icons">create</i>
-                                                                        </a>
-                                                                        <a href="{{$eleve->id}}" class="btn btn-tbl-delete"class="btn btn-primary" data-bs-toggle="modal"
-                                                                        data-bs-target="#eleve" >
-                                                                            <i class="material-icons">delete_forever</i>
-                                                                        </a>
-                                                                        @include('components.Modals.delete')
-                                                                    </div>
-                                                                </td>
+                                                                <td class="center">
+                                                                    <a href="" class="btn btn-tbl-edit">
+                                                                        <i class="fas fa-eye"></i>
+                                                                    </a>
+                                                                    <a href="" class="btn btn-tbl-edit">
+                                                                        <i class="material-icons">create</i>
+                                                                    </a>
 
+                                                                    <form style="display: inline" action="@route('eleve.destroy', $eleve)" method="post">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button class="btn btn-tbl-delete btn-sm delete-confirm" data-name="{{ $eleve->id }}" type="submit">
+                                                                            <i class="material-icons">delete_forever</i>
+                                                                        </button>
+                                                                    </form>
+                                                                </td>
                                                             </tr>
                                                         @endforeach
                                                     </tbody>

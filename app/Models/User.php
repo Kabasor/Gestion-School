@@ -42,7 +42,7 @@ class User extends Authenticatable
     // const FEMME = 'Feminin';
     const H = "H";
     const F = "F";
-    const PASSWORD_DEFAULT = 'Uni12345678';
+    // const PASSWORD_DEFAULT = 12345678';
 
 
     /**
@@ -51,9 +51,22 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'matricule',
+        'nom',
+        'prenom',
+        'telephone' ,
+        'fonction',
+        'role',
+        'diplome' ,
+        'date_naissance',
+        'lieu_naissance',
+        'biographie',
+        'adresse',
+        'sexe',
+        'photo',
+        'salaire',
+        'active',
+        'password' ,
     ];
 
     /**
@@ -105,7 +118,7 @@ class User extends Authenticatable
         parent::boot();
 
         self::creating(function ($user) {
-            $user->password = Hash::make(PASSWORD_DEFAULT);
+            // $user->password = Hash::make(PASSWORD_DEFAULT);
             $user->active = true;
             $user->user()->associate(Auth::id());
         });

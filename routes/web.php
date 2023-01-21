@@ -8,6 +8,7 @@ use App\Http\Controllers\EleveController;
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\NiveauxController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\ReinscriptionController;
 use App\Http\Controllers\FraisScolariteController;
@@ -23,12 +24,44 @@ use App\Http\Controllers\FraisScolariteController;
 |
 */
 
+// Route::get('index', [CustomAuthController::class, 'dashboard']);
+// Route::get('Auth.login', [CustomAuthController::class, 'index'])->name('login');
+// Route::get('liste_user', [CustomAuthController::class, 'liste'])->name('liste_user');
+// Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
+// Route::get('Auth.register', [CustomAuthController::class, 'registration'])->name('register-user');
+// Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
+// Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
+
+
+
+
+
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('Auth.login');
+})->name('login');
+
+Route::get('/home', function () {
+    return view('home');
+})->name('index');
+
+Route::get('/index', function () {
+return view('index');
+})->name('index');
+
+// Route::get('/', function () {
+//     return view('index');
+// });
+
+// Route::get('/login', function () {
+//     return view('login');
+//     })->name('login');
+
+//     Route::get('/register', function () {
+//     return view('register');
+//     })->name('register');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -56,11 +89,6 @@ Route::resource('classe', ClasseController::class);
 Route::resource('niveau', NiveauxController::class);
 Route::resource('eleve', EleveController::class);
 Route::resource('prof', ProfController::class);
-
-
-
-
-
 
 
 require __DIR__.'/auth.php';

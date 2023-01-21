@@ -67,56 +67,50 @@
                                                     <form action="@route('inscription.store')" id="form_advanced_validation" method="POST" enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="row">
-                                                            <div class="col-sm-4">
+                                                            <div class="col-sm-3">
                                                                 <div class=" form-group form-float">
                                                                     <div class="form-line">
-                                                                        <input type="text" class="form-control @error('matricule') is-invalid @enderror" name="matricule" maxlength="30"
-                                                                        minlength="3" value="{{ old('matricule') }}" required >
+                                                                        <input type="text" class="form-control" name="matricule" maxlength="30"
+                                                                        minlength="3" required>
                                                                         <label class="form-label">Matricule</label>
-                                                                        @error('matricule')
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $message }}
-                                                                            </div>
-                                                                        @enderror
                                                                     </div>
-
+                                                                    <div class="help-info">Min. 3, Max. 30 characters</div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <div class=" form-group form-float">
                                                                     <div class="form-line">
-                                                                        <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom" maxlength="30"
-                                                                        minlength="3" value="{{ old('nom') }}" required>
+                                                                        <input type="text" class="form-control" name="nom" maxlength="30"
+                                                                        minlength="3" required>
                                                                         <label class="form-label">Nom</label>
-
-                                                                        @error('nom')
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $message }}
-                                                                            </div>
-                                                                        @enderror
                                                                     </div>
-
+                                                                    <div class="help-info">Min. 3, Max. 30 characters</div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-sm-4">
+                                                            <div class="col-sm-5">
                                                                 <div class=" form-group form-float">
                                                                     <div class="form-line">
-                                                                        <input type="text" class="form-control @error('prenom') is-invalid @enderror" name="prenom" maxlength="30"
-                                                                        minlength="3" value="{{ old('prenom') }}" required>
+                                                                        <input type="text" class="form-control" name="prenom" maxlength="30"
+                                                                        minlength="3" required>
                                                                         <label class="form-label">Prénom</label>
-                                                                        @error('prenom')
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $message }}
-                                                                            </div>
-                                                                        @enderror
                                                                     </div>
-
+                                                                    <div class="help-info">Min. 3, Max. 30 characters</div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-sm-4 ">
-                                                                <div class="form-group form-float ">
+                                                        {{-- </div> --}}
+                                                        {{-- <div class="row"> --}}
+                                                            {{-- <div class="col-sm-4 mt-4">
+                                                                <div class="form-group form-float">
+                                                                    <div class="form-line">
+                                                                        <input type="email" class="form-control" name="email" maxlength="30"
+                                                                        minlength="3" required>
+                                                                        <label class="form-label">Email</label>
+                                                                    </div>
+                                                                    <div class="help-info">Min. 3, Max. 30 characters</div>
+                                                                </div>
+                                                            </div> --}}
+                                                            <div class="col-sm-3 ">
+                                                                <div class="form-group ">
                                                                     <div class="form-line">
                                                                         <label for="email_address">Date de naissance</label>
                                                                         <input id="myDatePicker"  placeholder="Entrez votre date de naissance" name="date_de_naissance"
@@ -132,43 +126,39 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-sm-4">
+                                                            <div class="col-sm-3 mt-4">
                                                                 <div class="form-group form-float">
                                                                     <div class="form-line">
-                                                                        <input type="text" class="form-control @error('lieu_de_naissance') is-invalid @enderror" name="lieu_de_naissance" maxlength="30"
-                                                                        minlength="3"  value="{{ old('lieu_de_naissance') }}" required>
+                                                                        <input type="text" class="form-control" name="lieu_de_naissance" maxlength="30"
+                                                                        minlength="3" required>
                                                                         <label class="form-label">Lieu de naissance</label>
-
-                                                                        @error('date_de_naissance')
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $message }}
-                                                                            </div>
-                                                                        @enderror
                                                                     </div>
-
+                                                                    <div class="help-info">Min. 3, Max. 30 characters</div>
                                                                 </div>
                                                             </div>
                                                         {{-- </div>
                                                         <div class="row"> --}}
-                                                            <div class="col-sm-4">
+                                                            <div class="col-sm-3 mt-4">
                                                                 <div class=" form-group form-float">
                                                                     <div class="form-line">
+                                                                        <input type="text" class="form-control" name="nationalite" maxlength="30"
+                                                                        minlength="3" required>
                                                                         <label class="form-label">Nationalité</label>
-                                                                        <input type="text" class="form-control @error('nationalite') is-invalid @enderror" name="nationalite" maxlength="30"
-                                                                        minlength="3" value="{{ old('nationalite') }}" required>
-                                                                        @error('nationalite')
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $message }}
-                                                                            </div>
-                                                                        @enderror
                                                                     </div>
-
+                                                                    <div class="help-info">Min. 3, Max. 30 characters</div>
                                                                 </div>
                                                             </div>
-
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-sm-4">
+                                                            {{-- <div class="col-sm-2 mt-4">
+                                                                <div class=" form-group form-float">
+                                                                    <div class="form-line">
+                                                                        <input type="text" class="form-control" name="adresse" maxlength="30"
+                                                                        minlength="3" required>
+                                                                        <label class="form-label">Adresse</label>
+                                                                    </div>
+                                                                    <div class="help-info">Min. 3, Max. 30 characters</div>
+                                                                </div>
+                                                            </div> --}}
+                                                            <div class="col-sm-3 mt-2">
                                                                 <div class="form-group default-select select2Style">
                                                                     <label>Séléctionnez le Sexe</label>
                                                                     <select name="sexe" class="form-control select2" data-placeholder="Séléctionnez le Sexe">
@@ -186,105 +176,76 @@
                                                                     @enderror
                                                                 </div>
                                                             </div>
-
+                                                        {{-- </div>
+                                                        <div class="row"> --}}
                                                             <div class="col-sm-4">
                                                                 <div class=" form-group form-float">
                                                                     <div class="form-line">
-                                                                        <input type="text" class="form-control @error('pere') is-invalid @enderror" name="pere" maxlength="30"
-                                                                        minlength="3" value="{{ old('pere') }}" required>
+                                                                        <input type="text" class="form-control" name="pere" maxlength="30"
+                                                                        minlength="3" required>
                                                                         <label class="form-label">Père</label>
-
-                                                                        @error('pere')
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $message }}
-                                                                            </div>
-                                                                        @enderror
                                                                     </div>
-
+                                                                    <div class="help-info">Min. 3, Max. 30 characters</div>
                                                                 </div>
                                                             </div>
-
                                                             <div class="col-sm-4">
                                                                 <div class=" form-group form-float">
                                                                     <div class="form-line">
-                                                                        <input type="text" class="form-control @error('mere') is-invalid @enderror" name="mere" maxlength="30"
-                                                                        minlength="3" value="{{ old('mere') }}" required>
+                                                                        <input type="text" class="form-control" name="mere" maxlength="30"
+                                                                        minlength="3" required>
                                                                         <label class="form-label">Mère</label>
-
-                                                                        @error('mere')
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $message }}
-                                                                            </div>
-                                                                        @enderror
                                                                     </div>
-
+                                                                    <div class="help-info">Min. 3, Max. 30 characters</div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row ">
-
                                                             <div class="col-sm-4">
                                                                 <div class=" form-group form-float">
                                                                     <div class="form-line">
-                                                                        <input type="text" class="form-control @error('tuteur') is-invalid @enderror" name="tuteur" maxlength="30"
-                                                                            minlength="3" value="{{ old('tuteur') }}" required>
+                                                                        <input type="text" class="form-control" name="tuteur" maxlength="30"
+                                                                            minlength="3" required>
                                                                         <label class="form-label">Tuteur</label>
-                                                                        @error('mere')
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $message }}
-                                                                            </div>
-                                                                        @enderror
                                                                     </div>
-
+                                                                    <div class="help-info">Min. 3, Max. 30 characters</div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-4">
                                                                 <div class="form-group form-float">
                                                                     <div class="form-line">
-                                                                        <input type="email" class="form-control @error('email_tuteur') is-invalid @enderror" name="email_tuteur" maxlength="30"
-                                                                        minlength="3" value="{{ old('email_tuteur') }}" >
+                                                                        <input type="email" class="form-control" name="email_tuteur" maxlength="30"
+                                                                        minlength="3" >
                                                                         <label class="form-label">Email Tuteur</label>
-                                                                        @error('email')
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $message }}
-                                                                            </div>
-                                                                        @enderror
                                                                     </div>
-
+                                                                    <div class="help-info">Min. 3, Max. 30 characters</div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-sm-4">
+                                                            <div class="col-sm-4 mt-3">
                                                                 <div class="form-group form-float">
                                                                     <div class="form-line">
-                                                                        <input type="phone" class="form-control @error('telephone_tuteur') is-invalid @enderror" name="telephone_tuteur" maxlength="30"
-                                                                        minlength="3" value="{{ old('telephone_tuteur') }}" required>
+                                                                        <input type="phone" class="form-control" name="telephone_tuteur" maxlength="30"
+                                                                        minlength="3" required>
                                                                         <label class="form-label">Téléphone Tuteur</label>
-                                                                        @error('telephone_tuteur')
-                                                                            <div class="invalid-feedback">
-                                                                                {{ $message }}
-                                                                            </div>
-                                                                        @enderror
                                                                     </div>
-
+                                                                    <div class="help-info">Min. 3, Max. 30 characters</div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row">
                                                             <div class="col-sm-4">
                                                                 <div class=" form-group form-float">
                                                                     <div class="form-line">
                                                                         <input type="text" value="{{ old('adresse_tuteur') }}" class="form-control @error('adresse_tuteur') is-invalid @enderror" name="adresse_tuteur" maxlength="30"
                                                                         minlength="3" >
                                                                         <label class="form-label">Adresse Tuteur</label>
-                                                                        @error('adresse_tuteur')
+                                                                    </div>
+                                                                    <div class="help-info">Min. 3, Max. 30 characters</div>
+                                                                    @error('adresse_tuteur')
                                                                         <div class="invalid-feedback">
                                                                             {{ $message }}
                                                                         </div>
                                                                     @enderror
-                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-sm-4">
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col-sm-4 mt-3">
                                                                 <div class="form-group default-select select2Style">
                                                                     <label class="mb-2">Séléctionnez la classe</label>
                                                                     <select class="form-control select2" name="classe" id="classe" data-placeholder="Séléctionnez la classe">
@@ -303,7 +264,7 @@
                                                                 </div>
 
                                                             </div>
-                                                            <div class="col-sm-4">
+                                                            <div class="col-sm-5 mt-3">
                                                                 <div class="file-field input-field">
                                                                     <div class="btn">
                                                                         <span>Photo</span>
@@ -313,9 +274,10 @@
                                                                         <input class="file-path validate" type="text">
                                                                     </div>
                                                                 </div>
+
                                                             </div>
+
                                                         </div>
-                                                      
                                                         <div class="row" id="row_data"></div>
                                                         <button class="btn btn-info waves-effect" type="submit"> <i data-feather="save"></i> Enregistrer</button>
                                                     </form>
@@ -358,7 +320,9 @@
                                                         <td>{{ $inscription->eleve->sexe }}</td>
                                                         <td>{{ $inscription->eleve->classe->libelle }}</td>
 
-
+                                                        <td>
+                                                            Actions
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
@@ -428,6 +392,7 @@
             $('#classe').on('change', function() {
                 let classe = $(this).find('option:selected').val();
 
+
                 $.ajax({
                     type: "GET",
                     dataType: "json",
@@ -436,7 +401,6 @@
                         classe: classe,
                     },
                     success: function(response) {
-
                         let data = "";
                         if(response.frais_scolarite) {
 
@@ -463,8 +427,8 @@
                                     <div class="col-sm-3 mt-3">
                                         <label>Montant payé : <span class="tx-danger">*</span></label>
                                         <input type="text"
-                                            class="form-control champ montant_paye  @error('montant_paye') is-invalid @enderror"
-                                            name="montant_paye" id="montant_paye"
+                                            class="form-control champ montant_paye  @error('prix_montant_paye') is-invalid @enderror"
+                                            name="prix_montant_paye" id="montant_paye"
                                             value=""
                                             required>
                                     </div>

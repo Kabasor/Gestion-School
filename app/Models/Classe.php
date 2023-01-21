@@ -50,14 +50,14 @@ class Classe extends Model
 
     public function eleves(): HasMany
     {
-        return $this->hasMany(Eleve::class);
+        return $this->hasMany(Eleve::class, 'classe_id');
     }
 
     public function paiementEleves(): HasMany
     {
         return $this->hasMany(PaiementEleve::class);
     }
-    
+
     public function historiquePaiments(): HasMany
     {
         return $this->hasMany(HistoriquePaiementEleve::class, 'eleve_id');

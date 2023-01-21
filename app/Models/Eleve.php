@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Eleve extends Model
 {
@@ -26,7 +28,17 @@ class Eleve extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'date_naissance' => 'datetime',
+        'email_verified_at' => 'datetime',
+        // 'date_naissance' => 'datetime',
+
+    ];
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $with = [
+        'user','classe', 'niveau'
 
     ];
 
@@ -65,6 +77,13 @@ class Eleve extends Model
         return $this->prenom . ' ' . $this->nom;
     }
 
+    protected function dateNaissance(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => Carbon::parse($value),
+        );
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -88,7 +107,7 @@ class Eleve extends Model
 
     public function classe()
     {
-        return $this->belongsTo(Classe::class);
+        return $this->belongsTo(Classe::class, 'classe_id');
     }
 
     public function inscription(): HasOne

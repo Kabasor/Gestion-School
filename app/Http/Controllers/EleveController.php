@@ -21,6 +21,7 @@ class EleveController extends Controller
     public function index()
     {
         $eleves = Eleve::all();
+        
         return view('containers.gestion-eleves.eleves.eleves', compact('eleves'));
 
     }
@@ -71,9 +72,9 @@ class EleveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Eleve $eleve)
     {
-        //
+        return view('containers.gestion-eleves.eleves.show-eleve', compact('eleve'));
     }
 
     /**
@@ -84,7 +85,7 @@ class EleveController extends Controller
      */
     public function edit(Eleve $eleve)
     {
-        return view('admin.eleves.edit-eleve', compact('eleve'));
+        return view('containers.gestion-eleves.eleves.edit-eleve', compact('eleve'));
     }
 
     /**

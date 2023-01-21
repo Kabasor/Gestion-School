@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('libelle')->nullable();
             $table->string('slug')->nullable();
             $table->foreignId('eleve_id')->nullable()->constrained('eleves')->index();
-            $table->foreignId('annee_scolarite_id')->nullable()->constrained('annee_scolarites');
+            $table->foreignId('annee_scolarite_id')->nullable()->constrained('annee_scolarites')->index();
             $table->double('remise')->unsigned()->nullable();
             $table->double('montant')->unsigned()->nullable();
             $table->double('montant_inscription')->unsigned()->nullable();
-            $table->double('montant_paye')->unsigned()->nullable();
+            $table->double('montant_payer')->unsigned()->nullable();
             $table->double('reste')->unsigned()->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade');
             $table->softDeletes();

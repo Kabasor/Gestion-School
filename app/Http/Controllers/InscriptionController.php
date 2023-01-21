@@ -47,7 +47,6 @@ class InscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
 
         $request->validate([
             'matricule' => 'required|string|min:2|max:30',
@@ -84,8 +83,7 @@ class InscriptionController extends Controller
         } else {
             $path = '';
         }
-        $montant_paye= format_number($request->montant_paye);
-        // dd( $montant_paye);
+        $montant_paye = format_number($request->montant_paye);
         if ($montant_paye < 0) {
             Alert::error('Erreur', "Le montant payé doit être supérieur à 1 ! ");
             return back();
@@ -98,7 +96,7 @@ class InscriptionController extends Controller
 
         if (!($frais)) {
 
-            Alert::error('Erreur', "Frais de scolarité non établi pour la classe choisie !");
+            Alert::error('Erreur', "Frais de scolarité non établi pour la classe choisi !");
             return back();
         }
 
@@ -121,7 +119,6 @@ class InscriptionController extends Controller
             'email_tuteur' => $request->email_tuteur,
             'photo' => $path,
             // 'nouveau' => true,
-            'montant_paye' => $request->montant_paye,
             'status' => true,
         ]);
         $libelle = "Inscription ";
@@ -136,7 +133,7 @@ class InscriptionController extends Controller
             'montant_inscription' => $frais_ins,
             'montant' => $total_inscription_scolarite,
             'montant_paye' => $montant_paye,
-            // 'pourcentage' => ($montant_paye / $total_inscription_scolarite),
+            'pourcentage' => ($montant_paye / $total_inscription_scolarite),
         ]);
 
         $paiement = $eleve->paiements()->create([
@@ -144,10 +141,9 @@ class InscriptionController extends Controller
             'niveau_id' => $eleve->classe->niveau->id,
             'libelle' => $libelle,
             'dernier_payement' => $montant_paye,
-            'montant_paye' => $montant_paye,
             'montant_total' => $total_inscription_scolarite,
             // 'reste' => ($total_inscription_scolarite - $montant_paye),
-            // 'pourcentage' => ($montant_paye / $total_inscription_scolarite),
+            'pourcentage' => ($montant_paye / $total_inscription_scolarite),
             // 'status' => false,
         ]);
 

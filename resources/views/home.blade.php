@@ -23,6 +23,8 @@
 @endsection --}}
 
 @extends('layouts.default')
+@section('content')
+
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
@@ -596,4 +598,6 @@
         </div>
     </div>
 </section>
+
+@endsection
 
