@@ -138,6 +138,7 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    
                                     {{-- <div class="col-sm-6 mt-2">
                                         <div class="form-group default-select select2Style">
                                             <label>Séléctionnez le Sexe</label>

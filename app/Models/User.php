@@ -18,14 +18,15 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, Sluggable;
     // FONCTION
-    const RECTEUR = 'Recteur';
-    const VICE_RECTEUR = 'Vice Recteur';
-    const COMPTA = 'Comptable';
-    const SCOLARITE = 'Scolarité';
+    const FONDATIONTEUR = 'Fondateur';
+    const DIRECTEUR_GENERALE= 'Directeur Générale';
+    const COMPTABLE = 'Comptable';
+    const DIRECTEUR_PRIMAIRE = 'Directeur du primaire';
     const SECRETAIRE = 'Secretaire';
-    const CHEF_DE_DEPARTEMENT = 'Chef de departement';
+    const CHARGER_DES_AFFAIRES = 'charger des affaire interne';
     const ASSISTANT = 'Assistant';
-
+    const ENSEIGNANT = 'enseignant';
+    const SURVEILLANT = 'surveillant';
     // ROLE
     const ADMIN = 'Administrateur';
     const USER = 'Utilisateur';
@@ -51,13 +52,15 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+
         'matricule',
         'nom',
         'prenom',
-        'telephone' ,
+        'email',
+        'telephone',
         'fonction',
         'role',
-        'diplome' ,
+        'diplome',
         'date_naissance',
         'lieu_naissance',
         'biographie',
@@ -66,7 +69,8 @@ class User extends Authenticatable
         'photo',
         'salaire',
         'active',
-        'password' ,
+        // 'email_verified_at',
+        'password',
     ];
 
     /**

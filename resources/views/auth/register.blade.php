@@ -13,7 +13,7 @@
     <h1>Sign Up</h1>
     <p class="account-subtitle">Enter details to create your account</p>
 
-    <form  action="{{ route('register.custom') }}" method="POST" enctype="multipart/form-data">
+    <form  action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
         @csrf
     <div class="form-group">
     <label>Username <span class="login-danger">*</span></label>

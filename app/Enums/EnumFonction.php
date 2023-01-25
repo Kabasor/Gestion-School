@@ -4,12 +4,14 @@ namespace App\Enums;
 
 enum EnumFonction: string
 {
-    case RECTEUR = 'Recteur';
-    case VICE_RECTEUR = 'Vice Recteur';
+    case FONDATION = 'Fondateur';
+    case DIRECTEUR_GENERALE= 'Directeur Générale';
     case COMPTA = 'Comptable';
-    case SCOLARITE = 'Scolarité';
+    case DIRECTEUR_PRIMAIRE = 'Directeur du primaire';
     case SECRETAIRE = 'Secretaire';
-    case CHEF_DE_DEPARTEMENT = 'Chef de departement';
+    case CHARGER_DES_AFFAIRES = 'charger des affaire interne';
     case ASSISTANT = 'Assistant';
+    case ENSEIGNANT = 'enseignant';
+    case SURVEILLANT = 'surveillant';
 
 }

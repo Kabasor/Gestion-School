@@ -36,10 +36,10 @@
                         <a href="{{route('annee.index')}}"><span class="fa fa-edit"></span> Gestion Année</a>
 
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{route('famille.index')}}"><span class="fa fa-edit"></span> Gestion Parents</a>
 
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
             {{-- <li>

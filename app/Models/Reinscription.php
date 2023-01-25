@@ -10,6 +10,9 @@ class Reinscription extends Model
 {
     use HasFactory;
 
+        protected $fillable = ['libelle','slug',  'eleve_id', 'annee_scolarite_id', 'remise',  'montant',
+        'montant_inscription', 'montant_payer',  'reste'
+        ];
     /**
      * user
      *

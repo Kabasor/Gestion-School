@@ -7,7 +7,7 @@
             <a href="#" onClick="return false;" class="bars"></a>
             <a class="navbar-brand" href="index.html">
                 <img src="{{('assets/images/logo.png')}}" alt="" />
-                <span class="logo-name">Blize</span>
+                <span class="logo-name">ELITE</span>
             </a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">

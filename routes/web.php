@@ -3,15 +3,17 @@
 use App\Models\FraisScolarite;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnneeController;
 use App\Http\Controllers\EleveController;
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\NiveauxController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\ReinscriptionController;
 use App\Http\Controllers\FraisScolariteController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,17 +38,18 @@ use App\Http\Controllers\FraisScolariteController;
 
 
 
+
 Route::get('/', function () {
     return view('Auth.login');
 })->name('login');
 
-Route::get('/home', function () {
-    return view('home');
-})->name('index');
+// Route::get('/home', function () {
+//     return view('home');
+// })->name('index');
 
-Route::get('/index', function () {
-return view('index');
-})->name('index');
+// Route::get('/index', function () {
+// return view('index');
+// })->name('index');
 
 // Route::get('/', function () {
 //     return view('index');
@@ -64,6 +67,8 @@ Route::get('/dashboard', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::resource('user', RegisteredUserController::class);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -79,7 +84,6 @@ Route::get('get-frais-scolarite-classe/{classe?}', [FraisScolariteController::cl
     |--------------------------------------------------------------------------
 */
 Route::get('print-inscription', [InscriptionController::class, 'print'])->name('print.inscription');
-
 
 Route::resource('inscription', InscriptionController::class);
 Route::resource('reinscription', ReinscriptionController::class);

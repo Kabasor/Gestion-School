@@ -34,7 +34,7 @@ return new class extends Migration
             $table->boolean('active')->default(true)->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade')->index();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

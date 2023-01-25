@@ -40,6 +40,7 @@ class ProfController extends Controller
      */
     public function store(Request $request)
     {
+        
         $validate = $request->validate([
             'matricule' => ['required', 'string', 'min:2', 'max:225', Rule::unique('profs')],
             'nom'=> ['required', 'string', 'min:2', 'max:225'],
@@ -129,7 +130,7 @@ class ProfController extends Controller
             'image'=>$request->image,
         ]);
 
-       
+
         return \redirect()->route('prof.index');
     }
 
