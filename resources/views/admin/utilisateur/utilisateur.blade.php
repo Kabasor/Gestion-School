@@ -1,5 +1,13 @@
  @extends('layouts.default')
 
+ @push('styles')
+    <!-- Colorpicker Css -->
+    <link href="{{ asset('assets/js/bundles/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css') }}" rel="stylesheet" />
+    <!-- Multi Select Css -->
+    <link href="{{ asset('assets/js/bundles/multiselect/css/multi-select.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/form.min.css') }}" rel="stylesheet">
+@endpush
+
 @section('content')
     <section class="content">
         <div class="container-fluid">
@@ -18,24 +26,19 @@
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
-                        <div class="header">
-                            <h2>
-                                <strong>Exportable</strong> Table</h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="#" onClick="return false;" class="dropdown-toggle" data-bs-toggle="dropdown"
-                                        role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu float-end">
-                                        <li>
-                                            <a href="{{route('user.create')}}" onClick="return true;">Ajouter</a>
-                                        </li>
+                        <div class="mt-5" >
+                            <div class="header">
+                                <h2>
+                                    <strong>Exportable</strong> Table</h2>
+                                <ul class="header-dropdown m-r--5">
+                                    <li>
+                                        <button class="btn-hover color-6"><a href=" {{route('user.create')}} "> Ajouter</a></button>
 
-                                    </ul>
-                                </li>
-                            </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
+
 
                         <div class="body">
                             <div class="table-responsive">
@@ -74,11 +77,19 @@
                                                         <a href="{{route('user.edit',$user)}}" class="btn btn-tbl-edit">
                                                             <i class="material-icons">create</i>
                                                         </a>
-                                                        <a href="{{$user->id}}" class="btn btn-tbl-delete"class="btn btn-primary" data-bs-toggle="modal"
+
+                                                        <form style="display: inline" action="@route('user.destroy', $user)" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="btn btn-tbl-delete btn-sm delete-confirm" data-name="{{$user->id}}" type="submit">
+                                                                <i class="material-icons">delete_forever</i>
+                                                            </button>
+                                                        </form>
+                                                        {{-- <a href="{{$user->id}}" class="btn btn-tbl-delete"class="btn btn-primary" data-bs-toggle="modal"
                                                         data-bs-target="#user" >
                                                             <i class="material-icons">delete_forever</i>
                                                         </a>
-                                                        @include('components.Modals.delete')
+                                                        @include('components.Modals.delete') --}}
                                                     </div>
                                                 </td>
 
@@ -96,7 +107,24 @@
         </section>
 @endsection
     @push('scripts')
-    <script src="{{ asset('assets/js/table.min.js')}}"></script>
+
+    <script src="{{ asset('assets/js/table.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bundles/export-tables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bundles/export-tables/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bundles/export-tables/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bundles/export-tables/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bundles/export-tables/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/js/bundles/export-tables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bundles/export-tables/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/tables/jquery-datatable.js') }}"></script>
+
+    <script type="text/javascript">
+
+
+    </script>
+
+
+    {{-- <script src="{{ asset('assets/js/table.min.js')}}"></script>
     <script src="{{ asset('assets/js/bundles/export-tables/dataTables.buttons.min.js')}}"></script>
     <script src="{{ asset('assets/js/bundles/export-tables/buttons.flash.min.js')}}"></script>
     <script src="{{ asset('assets/js/bundles/export-tables/jszip.min.js')}}"></script>
@@ -105,7 +133,7 @@
     <script src="{{ asset('assets/js/bundles/export-tables/buttons.html5.min.js')}}"></script>
     <script src="{{ asset('assets/js/bundles/export-tables/buttons.print.min.js')}}"></script>
     <script src="{{ asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
-    <script src="{{ asset('assets/js/pages/ui/dialogs.js')}}"></script>
+    <script src="{{ asset('assets/js/pages/ui/dialogs.js')}}"></script> --}}
     @endpush
 
 

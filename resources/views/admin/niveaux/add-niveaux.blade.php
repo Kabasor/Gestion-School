@@ -59,7 +59,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <button type="submit" class="btn btn-primary">ajouter</button>
+                                            <button class="btn btn-info waves-effect" type="submit"> <i data-feather="save"></i> Enregistrer</button>
                                         </div>
                                     </div>
                                 </div>

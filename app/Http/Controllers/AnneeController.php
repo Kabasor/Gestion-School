@@ -37,14 +37,20 @@ class AnneeController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
-            'annee_scolaire'=>'required|string|min:8',
+            'anneescolaire'=>'required|string|min:8',
+            'date_debut'=>'nullable|numeric',
+            'date_fin'=>'nullable|numeric',
             'description'=>'nullable|string|min:3',
         ]);
 
-        // dd($request->all());
+
         $annee = Anneescolaire::create([
-            'anneescolaire' => $request->annee_scolaire,
+            'anneescolaire' => $request->anneescolaire,
+            'date_debut'=>$request->date_debut,
+            'date_fin'=>$request->date_fin,
+            'description'=>$request->description,
 
         ]);
 
@@ -85,13 +91,16 @@ class AnneeController extends Controller
     public function update(Request $request, Anneescolaire $annee)
     {
         $validate = $request->validate([
-            'name'=>'required',
-            'description'=>'nullable',
+            'annee_scolaire'=>'required|string|min:8',
+            'date_debut'=>'nullable|numeric',
+            'date_fin'=>'nullable|numeric',
+            'description'=>'nullable|string|min:3',
         ]);
 
         $annee->update([
-            'name'=>$request->name,
-            'description'=>$request->description,
+            'anneescolaire' => $request->annee_scolaire,
+            'date_debut'=>$request->date_debut,
+            'date_fin'=>$request->date_fin,
         ]);
         $msg="l'année {{$annee->name}} a été modifiée avec succés";
         Alert::warning('Felicitation',$msg);

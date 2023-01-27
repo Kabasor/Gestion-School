@@ -45,7 +45,7 @@
                             </ul>
                         </div>
                         <div class="body">
-                        <form action=" {{route('prof.update', $prof)}} " method="POST" enctype="multipart/form-data">
+                        <form action=" # " method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row clearfix">

@@ -14,6 +14,7 @@ class Anneescolaire extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = [ 'anneescolaire',  'session_annee_fin', 'date_debut',  'date_fin', 'user_id', 'description',
 
+    
     ];
 
     /**

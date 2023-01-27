@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rules\Enum;
+use Intervention\Image\Facades\Image;
 use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
 
@@ -47,7 +48,7 @@ class RegisteredUserController extends Controller
             'matricule'=>['required','string','min:2','max:30'],
             'nom'=>['required','string','min:2','max:30'],
             'prenom' =>['required', 'string','min:2','max:50'],
-            'email'=> ['required', 'string', 'email', 'max:255', ],
+            'email'=> ['required', 'string', 'email', 'max:255'],
             'telephone'=> 'nullable|numeric|digits:9',
             'fonction'=>['required', 'string', 'min:3', 'max:15', new Enum(EnumFonction::class)],
             'role'=>['required','string','min:2','max:50'],
@@ -60,18 +61,16 @@ class RegisteredUserController extends Controller
             'photo'=>['nullable', 'image', 'mimes:jpeg,jpg,png',],
             'salaire'=>['nullable', 'string', 'min:0',],
             // 'active '=>['nullable', 'string', 'min:0',],
-            // 'password'=>['required', 'confirmed', Rules\Password::defaults()],
+            'password'=>['required', 'confirmed', Rules\Password::defaults()],
 
         ]);
-
-        // dd($request->all());
 
         if ($request->hasFile('photo')) {
             $username = Str::slug($request->nom . ' ' . $request->prenom);
             $filename = $username . '.' . time() . '.' . $request->photo->extension();
 
             $path = $request->file('photo')->storeAs(
-                'utilisateurs',
+                'users',
                 $filename,
                 'public',
             );
@@ -82,7 +81,10 @@ class RegisteredUserController extends Controller
             $path = '';
         }
 
-        // $user= User::create($validate);
+        // dd($request->all());
+
+
+
         $user = User::create([
             'matricule'=> $request->matricule,
             'nom'=> $request->nom,
@@ -100,13 +102,18 @@ class RegisteredUserController extends Controller
             'photo'=> $request->path,
             'salaire'=> $request->salaire,
             // 'active'=> $request->active,
-            // 'password'=> Hash::make($request->password),
+            'password'=> Hash::make($request->password),
         ]);
-
         event(new Registered($user));
 
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function destroy(Request $request , User $user)
+    {
+        $user->delete();
+        return redirect()->route('user.index');
     }
 }

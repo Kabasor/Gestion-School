@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @push('styles')
-<link href="{{ asset('assets/js/bundles/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/js/bundles/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/form.min.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/js/bundles/multiselect/css/multi-select.css')}}" rel="stylesheet">
 @endpush
@@ -26,7 +26,7 @@
                             <h2>
                                 <strong>Basic</strong> Validation</h2>
                             <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
+                                {{-- <li class="dropdown">
                                     <a href="#" onClick="return false;" class="dropdown-toggle" data-bs-toggle="dropdown"
                                         role="button" aria-haspopup="true" aria-expanded="false">
                                         <i class="material-icons">more_vert</i>
@@ -42,10 +42,10 @@
                                             <a href="#" onClick="return false;">Something else here</a>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
-                        <div class="body">
+                        {{-- <div class="body">
                             @if ($errors->any())
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -53,39 +53,27 @@
                                 @endforeach
                             </ul>
                             @endif
-                        </div>
+                        </div> --}}
                         <form action=" {{route('user.store')}} " method="POST" enctype="multipart/form-data">
                             @csrf
-                                        <div class="row clearfix">
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label for="Matricule">Matricule <span class="text-danger">*</span> :</label>
-                                                    <input type="text" class="form-control @error('matricule') is-invalid @enderror" name="matricule" value=" {{old('matricule')}}" />
-                                                    @error('matricule')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
+                                <div class="row clearfix">
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <div class="form">
-                                                    <label for="nom">Nom <span class="text-danger">*</span> :</label>
-                                                    <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom" value=" {{old('nom')}}" />
-                                                    @error('nom')
-                                                        <div class="invalid-feedback">
-                                                            {{ $message }}
-                                                        </div>
-                                                    @enderror
-                                                </div>
+                                                <label for="matricule">Matricule <span class="text-danger">*</span> :</label>
+                                                <input type="text" class="form-control @error('matricule') is-invalid @enderror" name="matricule" value=" {{old('matricule')}}" />
+                                                @error('matricule')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label for="prenom">Prenom <span class="text-danger">*</span> :</label>
-                                                <input type="text" class="form-control @error('prenom') is-invalid @enderror" name="prenom" value=" {{old('prenom')}}" />
-                                                @error('prenom')
+                                        <div class="form-group">
+                                            <div class="form">
+                                                <label for="nom">Nom <span class="text-danger">*</span> :</label>
+                                                <input type="text" class="form-control @error('nom') is-invalid @enderror" name="nom" value=" {{old('nom')}}" />
+                                                @error('nom')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -93,6 +81,18 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="prenom">Prenom <span class="text-danger">*</span> :</label>
+                                            <input type="text" class="form-control @error('prenom') is-invalid @enderror" name="prenom" value=" {{old('prenom')}}" />
+                                            @error('prenom')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
                                     <div class="row clearfix">
                                         <div class="col-sm-4">
                                             <div class="form-group">
@@ -121,7 +121,7 @@
                                     <div class="col-sm-4 mt-3">
                                         <div class="form-group default-select select2Style">
                                             <label>Séléctionnez la Fonction</label>
-                                            <select name="fonction" class="form-control select2" data-placeholder="Séléctionnez la fonction">
+                                            <select name="fonction" id="fonction" class="form-control select2" data-placeholder="Séléctionnez la fonction">
                                                 <option>Fondateur</option>
                                                 <option>Directeur Générale</option>
                                                 <option>Comptable</option>
@@ -142,8 +142,8 @@
                                 <div class="row clearfix">
                                     <div class="col-sm-4 mt-3">
                                         <div class="form-group default-select select2Style">
-                                            <label>Séléctionnez la Fonction</label>
-                                            <select name="role" class="form-control select2" data-placeholder="Séléctionnez la role">
+                                            <label>Séléctionnez le role</label>
+                                            <select  class="form-control select2" name="role" data-placeholder="Séléctionnez la role">
                                                 <option>Administrateur</option>
                                                 <option>Utilisateur</option>
                                                 <option>Développeur</option>
@@ -159,7 +159,7 @@
                                 <div class="col-sm-4 mt-3">
                                     <div class="form-group default-select select2Style">
                                         <label>Séléctionnez le Diplome</label>
-                                        <select name="diplome" class="form-control select2" data-placeholder="Séléctionnez la diplome">
+                                        <select name="diplome" class="form-control select2" data-placeholder="Séléctionnez le diplome">
                                             <option >Doctorat</option>
                                             <option >Master 2</option>
                                             <option >Master 1</option>
@@ -175,7 +175,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="adresse">adresse <span class="text-danger">*</span> :</label>
-                                        <input type="text" class="form-control @error('adresse') is-invalid @enderror" name="adress" value=" {{old('adresse')}}" />
+                                        <input type="text" class="form-control @error('adresse') is-invalid @enderror" name="adresse" value=" {{old('adresse')}}" />
                                         @error('adresse')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -312,9 +312,6 @@
         </div>
     </div>
             <!-- #END# Basic Validation -->
-
-
-        </div>
     </section>
 @endsection
 
@@ -325,7 +322,6 @@
 <script src="{{ asset('assets/js/pages/forms/advanced-form-elements.js') }}"></script>
 <script src="{{ asset('assets/js/pages/forms/basic-form-elements.js') }}"></script>
 <script src="{{ asset('assets/js/pages/forms/form-validation.js') }}"></script>
-
 @endpush
 
 

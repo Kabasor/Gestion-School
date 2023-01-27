@@ -126,7 +126,8 @@
 
 
 <!-- Debut delete prof //////////////////////////////////////////////////////////////-->
-@if (Route::is(['prof.index']))
+
+{{-- @if (Route::is(['prof.index']))
 <form action=" {{route('prof.destroy',$prof)}} " method="POST" >
     @csrf
     @method('DELETE')
@@ -164,6 +165,6 @@
         </div>
     </div>
 </form>
-@endif
+@endif --}}
 <!-- fin delete prof //////////////////////////////////////////////////////////////-->
 

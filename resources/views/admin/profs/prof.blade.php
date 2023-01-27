@@ -31,7 +31,7 @@
                                         <li>
                                             <a href="{{route('prof.create')}}" onClick="return true;">Ajouter</a>
                                         </li>
-                                        
+
                                     </ul>
                                 </li>
                             </ul>
@@ -55,11 +55,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $i = 0; ?>
                                         @foreach ($profs as $prof )
                                             <tr>
-                                                <?php $i++; ?>
-                                                <td> {{$i}} </td>
+                                                <td> {{$loop->iteration}} </td>
                                                 <td> {{$prof->matricule}} </td>
                                                 <td> {{$prof->nom}} </td>
                                                 <td> {{$prof->prenom}} </td>
@@ -75,11 +73,14 @@
                                                         <a href="{{route('prof.edit',$prof)}}" class="btn btn-tbl-edit">
                                                             <i class="material-icons">create</i>
                                                         </a>
-                                                        <a href="{{$prof->id}}" class="btn btn-tbl-delete"class="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#prof" >
-                                                            <i class="material-icons">delete_forever</i>
-                                                        </a>
-                                                        @include('components.Modals.delete')
+                                                        <form style="display: inline" action="@route('prof.destroy', $prof)" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="btn btn-tbl-delete btn-sm delete-confirm" data-name="{{$prof->id}}" type="submit">
+                                                                <i class="material-icons">delete_forever</i>
+                                                            </button>
+                                                        </form>
+
                                                     </div>
                                                 </td>
 

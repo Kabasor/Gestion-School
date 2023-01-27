@@ -9,6 +9,7 @@ use App\Http\Controllers\EleveController;
 use App\Http\Controllers\ClasseController;
 use App\Http\Controllers\NiveauxController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\ReinscriptionController;
 use App\Http\Controllers\FraisScolariteController;
@@ -27,53 +28,35 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 */
 
 // Route::get('index', [CustomAuthController::class, 'dashboard']);
-// Route::get('Auth.login', [CustomAuthController::class, 'index'])->name('login');
+// Route::get('login', [CustomAuthController::class, 'index'])->name('login');
 // Route::get('liste_user', [CustomAuthController::class, 'liste'])->name('liste_user');
 // Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
-// Route::get('Auth.register', [CustomAuthController::class, 'registration'])->name('register-user');
+// Route::get('register', [CustomAuthController::class, 'registration'])->name('register-user');
 // Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
 // Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
 
-
-
-
-
+/*
+    |--------------------------------------------------------------------------
+    | Authentification et user
+    |--------------------------------------------------------------------------
+*/
 Route::get('/', function () {
     return view('Auth.login');
 })->name('login');
-
-// Route::get('/home', function () {
-//     return view('home');
-// })->name('index');
-
-// Route::get('/index', function () {
-// return view('index');
-// })->name('index');
-
-// Route::get('/', function () {
-//     return view('index');
-// });
-
-// Route::get('/login', function () {
-//     return view('login');
-//     })->name('login');
-
-//     Route::get('/register', function () {
-//     return view('register');
-//     })->name('register');
 
 Route::get('/dashboard', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
 Route::resource('user', RegisteredUserController::class);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 // AJAX
 Route::get('get-frais-scolarite-classe/{classe?}', [FraisScolariteController::class, 'get_frais_scolarite_classe'])->name('frais.scolarite.classe');

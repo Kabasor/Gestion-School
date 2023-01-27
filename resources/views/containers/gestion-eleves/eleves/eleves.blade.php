@@ -90,13 +90,18 @@
                                                                 <td>{{ $eleve->classe->libelle }}</td>
 
                                                                 <td class="center">
-                                                                    <a href="" class="btn btn-tbl-edit">
+                                                                    <a href="{{route('eleve.show',$eleve)}}" class="btn btn-tbl-edit">
+                                                                        <i class="material-icons">remove_red_eye</i>
+                                                                    </a>
+                                                                    <a href="{{route('eleve.edit',$eleve)}}" class="btn btn-tbl-edit">
+                                                                        <i class="material-icons">create</i>
+                                                                    </a>
+                                                                    {{-- <a href="" class="btn btn-tbl-edit">
                                                                         <i class="fas fa-eye"></i>
                                                                     </a>
                                                                     <a href="" class="btn btn-tbl-edit">
                                                                         <i class="material-icons">create</i>
-                                                                    </a>
-
+                                                                    </a> --}}
                                                                     <form style="display: inline" action="@route('eleve.destroy', $eleve)" method="post">
                                                                         @csrf
                                                                         @method('DELETE')
