@@ -15,36 +15,18 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-<<<<<<< HEAD
     public function create(): View
     {
         return view('auth.login');
     }
-=======
-
-     public function index(): View
-     {
-         return view('auth.login');
-     }
-
-    // public function create(): View
-    // {
-    //     return view('auth.login');
-    // }
->>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
 
     /**
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-<<<<<<< HEAD
-        $request->authenticate();
-=======
-
-        $request->authenticate();
         // dd($request->all());
->>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
+        $request->authenticate();
 
         $request->session()->regenerate();
 
