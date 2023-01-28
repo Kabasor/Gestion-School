@@ -18,6 +18,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, Sluggable;
     // FONCTION
+<<<<<<< HEAD
     const RECTEUR = 'Recteur';
     const VICE_RECTEUR = 'Vice Recteur';
     const COMPTA = 'Comptable';
@@ -26,6 +27,17 @@ class User extends Authenticatable
     const CHEF_DE_DEPARTEMENT = 'Chef de departement';
     const ASSISTANT = 'Assistant';
 
+=======
+    const FONDATIONTEUR = 'Fondateur';
+    const DIRECTEUR_GENERALE= 'Directeur Générale';
+    const COMPTABLE = 'Comptable';
+    const DIRECTEUR_PRIMAIRE = 'Directeur du primaire';
+    const SECRETAIRE = 'Secretaire';
+    const CHARGER_DES_AFFAIRES = 'charger des affaire interne';
+    const ASSISTANT = 'Assistant';
+    const ENSEIGNANT = 'enseignant';
+    const SURVEILLANT = 'surveillant';
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
     // ROLE
     const ADMIN = 'Administrateur';
     const USER = 'Utilisateur';
@@ -42,7 +54,11 @@ class User extends Authenticatable
     // const FEMME = 'Feminin';
     const H = "H";
     const F = "F";
+<<<<<<< HEAD
     const PASSWORD_DEFAULT = 'Uni12345678';
+=======
+    // const PASSWORD_DEFAULT = 12345678';
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
 
 
     /**
@@ -51,8 +67,24 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+
+        'matricule',
+        'nom',
+        'prenom',
         'email',
+        'telephone',
+        'fonction',
+        'role',
+        'diplome',
+        'date_naissance',
+        'lieu_naissance',
+        'biographie',
+        'adresse',
+        'sexe',
+        'photo',
+        'salaire',
+        'active',
+        // 'email_verified_at',
         'password',
     ];
 
@@ -105,7 +137,11 @@ class User extends Authenticatable
         parent::boot();
 
         self::creating(function ($user) {
+<<<<<<< HEAD
             $user->password = Hash::make(PASSWORD_DEFAULT);
+=======
+            // $user->password = Hash::make(PASSWORD_DEFAULT);
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
             $user->active = true;
             $user->user()->associate(Auth::id());
         });

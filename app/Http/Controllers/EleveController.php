@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Eleve;
-use App\Models\Famille;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+<<<<<<< HEAD
 use Intervention\Image\Facades\Image;
+=======
+use Illuminate\Validation\Rules\Enum;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
 use RealRashid\SweetAlert\Facades\Alert;
 
 class EleveController extends Controller
@@ -21,8 +27,14 @@ class EleveController extends Controller
     public function index()
     {
         $eleves = Eleve::all();
+<<<<<<< HEAD
         return view('containers.gestion-eleves.eleves.eleves', compact('eleves'));
         // return view('admin.eleves.eleve',compact('eleves'));
+=======
+        
+        return view('containers.gestion-eleves.eleves.eleves', compact('eleves'));
+
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
     }
 
     /**
@@ -32,9 +44,7 @@ class EleveController extends Controller
      */
     public function create()
     {
-        // $familles = Famille::all();
-        //['familles'=>Famille::get(['id','pere'])]
-        return view('admin.eleves.add-eleve',);
+
     }
 
     /**
@@ -46,33 +56,25 @@ class EleveController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'matricule'=>'required',
-            'nom'=>'required',
-            'prenom'=>'required',
-            'dateNaissance'=>'required|date',
-            'lieuNaissance'=>'required',
-            'genre'=>'required',
-            'nationalite',
-            'pere'=>'required',
-            'mere'=>'required',
-            'tuteur'=>'required',
-            'phone'=>'required|min:9',
-            'adresse'=>'required',
-            'photo'=>'required|mimes:jpg,jpeg,gif,png,svg',
-
-            // 'famille_id'=>['required', 'integer', 'min:1', Rule::exists('familles', "id")],
+            'matricule' => 'required|string|min:2|max:30',
+            'nom' => 'required|string|min:2|max:30',
+            'prenom' => 'required|string|min:2|max:50',
+            'date_de_naissance' => 'nullable|date',
+            'lieu_de_naissance' => 'nullable|string|min:2|max:50',
+            'sexe' => ['required', 'string', 'min:3', 'max:15', new Enum(EnumSexe::class)],
+            'nationalite' => 'required|string|min:3|max:30',
+            'pere' => 'nullable|string|min:3|max:100',
+            'mere' => 'nullable|string|min:3|max:100',
+            'tuteur' => 'nullable|string|min:3|max:100',
+            'telephone_tuteur' => 'nullable|numeric|digits:9',
+            'email_tuteur' => 'nullable|string|email|max:50|unique:eleves',
+            'adresse_tuteur' => 'nullable|string|min:3|max:30',
+            'classe' => ['required', 'numeric', Rule::exists('classes', 'id')],
+            'photo' => ['nullable', 'image', 'mimes:jpeg,jpg,png',],
 
         ]);
-        $photo = $request->file('photo');
-        $destination = 'image/';
-        $profile = date('YmdHis').".".$image->getClientOriginalExtension();
-        $image->move($destination , $profile);
-        $validate['image'] = $profile;
 
-        $eleve= Eleve::create($validate);
-        $msg="Un eleve a été ajouté avec succés";
-        Alert::success('Felicitation', $msg);
-        return \redirect()->route('eleve.index');
+
     }
 
     /**
@@ -81,9 +83,9 @@ class EleveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Eleve $eleve)
     {
-        //
+        return view('containers.gestion-eleves.eleves.show-eleve', compact('eleve'));
     }
 
     /**
@@ -94,8 +96,7 @@ class EleveController extends Controller
      */
     public function edit(Eleve $eleve)
     {
-        $familles = Famille::all();
-        return view('admin.eleves.edit-eleve', compact('eleve','familles'));
+        return view('containers.gestion-eleves.eleves.edit-eleve', compact('eleve'));
     }
 
     /**
@@ -107,6 +108,7 @@ class EleveController extends Controller
      */
     public function update(Request $request, Eleve $eleve)
     {
+<<<<<<< HEAD
         if ($request->hasFile('photo')) {
 
             //verification s'il possede deja une photo
@@ -152,26 +154,81 @@ class EleveController extends Controller
             'tuteur'=>'required',
             'phone'=>'required|min:9',
             'adresse'=>'required',
+=======
+        $validate = $request->validate([
+            'matricule' => 'required|string|min:2|max:30',
+            'nom' => 'required|string|min:2|max:30',
+            'prenom' => 'required|string|min:2|max:50',
+            'date_de_naissance' => 'nullable|date',
+            'lieu_de_naissance' => 'nullable|string|min:2|max:50',
+            'sexe' => ['required', 'string', 'min:3', 'max:15', new Enum(EnumSexe::class)],
+            'nationalite' => 'required|string|min:3|max:30',
+            'pere' => 'nullable|string|min:3|max:100',
+            'mere' => 'nullable|string|min:3|max:100',
+            'tuteur' => 'nullable|string|min:3|max:100',
+            'telephone_tuteur' => 'nullable|numeric|digits:9',
+            'email_tuteur' => 'nullable|string|email|max:50|unique:eleves',
+            'adresse_tuteur' => 'nullable|string|min:3|max:30',
+            // 'classe' => ['required', 'numeric', Rule::exists('classes', 'id')],
+            'photo' => ['nullable', 'image', 'mimes:jpeg,jpg,png',],
+            // 'montant_paye' => ['nullable', 'string', 'min:0',],
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
         ]);
 
         $eleve->update([
-            'matricule'=>$request->matricule,
-            'nom'=>$request->nom,
-            'prenom'=>$request->prenom,
-            'dateNaissance'=>$request->dateNaissance,
-            'lieuNaissance'=>$request->lieuNaissance,
-            'genre'=>$request->genre,
-            'nationalite'=>$request->nationalite,
-            'pere'=>$request->pere,
-            'mere'=>$request->mere,
-            'tuteur'=>$request->tuteur,
-            'phone'=>$request->phone,
-            'adresse'=>$request->adresse,
-
+            'matricule' => $request->matricule,
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'date_naissance' => $request->date_de_naissance,
+            'lieu_naissance' => $request->lieu_de_naissance,
+            'sexe' => $request->sexe,
+            'nationalite' => $request->nationalite,
+            'pere' => $request->pere,
+            'mere' => $request->mere,
+            'tuteur' => $request->tuteur,
+            'telephone_tuteur' => $request->telephone_tuteur,
+            'adresse_tuteur' => $request->adresse_tuteur,
+            'email_tuteur' => $request->email_tuteur,
+            'photo' => $path,
+            // 'montant_paye' => $request->montant_paye,
+            // 'status' => true,
         ]);
 
-        $msg="l'eleve a été modifiée avec succés";
-        Alert::warning('Felicitation',$msg);
+        if ($request->hasFile('photo')) {
+
+            //verification s'il possede deja une photo
+            if ($eleve->photo) {
+                $photoPath = $eleve->photo;
+                $exists = Storage::disk('public')->exists($photoPath);
+
+                // supprime l'ancienne photo qui a ete trouvé
+                if ($exists) {
+                    Storage::disk('public')->delete($photoPath);
+                }
+            }
+
+            $username = Str::slug($request->nom . ' ' . $request->prenom);
+            $filename = $username . '.' . time() . '.' . $request->photo->extension();
+
+            $path = $request->file('photo')->storeAs(
+                'eleves',
+                $filename,
+                'public',
+            );
+
+            $image = Image::make(public_path("/storage/{$path}"))->fit(100, 100);
+            $image->save();
+        } else {
+            if ($eleve->photo) {
+                $path =  $eleve->photo;
+            } else {
+                $path = '';
+            }
+        }
+
+
+
+
         return redirect()->route('eleve.index');
     }
 

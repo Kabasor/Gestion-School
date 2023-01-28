@@ -1,5 +1,8 @@
 @extends('layouts.default')
-<div>
+@push('styles')
+    <link href="{{ asset('assets/css/form.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/js/bundles/multiselect/css/multi-select.css')}}" rel="stylesheet">
+@endpush
 @section('content')
 <section class="content">
     <div class="container-fluid">
@@ -27,26 +30,25 @@
                         <form action=" {{route('classe.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row clearfix">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="form">
-                                            <select name="niveau" id="niveau_id" class="form-control @error('niveau_id') is-invalid @enderror " placeholder="select">>
+                            <div class="col-sm-6 ">
+                                    <div class="form-group default-select select2Style">
+                                        <label>Séléctionnez le Niveau </label>
+                                        <select name="niveau" id="niveau_id" class="form-control select2 @error('niveau_id') is-invalid @enderror" data-placeholder="Séléctionnez le Sexe">
+                                            {{-- <select name=""  class="form-control  " placeholder="select">> --}}
                                                 @foreach ($niveaux as $niveau )
                                                     <option value="{{$niveau->id}}"> {{$niveau->libelle}} </option>
                                                 @endforeach
-                                            </select>
-                                            @error('niveau_id')
-                                                <div class="invalid-feedback">
-                                                    {{ $errors->first('niveau_id') }}
-                                                </div>
-                                            @enderror
+                                            {{-- </select> --}}
+                                        </select>
+                                        @error('niveau_id')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
                                         </div>
-
+                                        @enderror
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row clearfix">
-                                <div class="col-md-12">
+
+                                <div class="col-sm-6 mt-2">
                                     <div class="form-group">
                                         <div class="form">
                                             <input type="text" name="libelle" class="form-control @error('libelle') is-invalid @enderror " placeholder="nom de classe">
@@ -77,7 +79,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <button type="submit" class="btn btn-primary">ajouter</button>
+                                            <button class="btn btn-info waves-effect" type="submit"> <i data-feather="save"></i> Enregistrer</button>
                                         </div>
                                     </div>
                                 </div>
@@ -91,4 +93,14 @@
     </div>
 </section>
 @endsection
-</div>
+@push('scripts')
+<script src="{{ asset('assets/js/form.min.js') }}"></script>
+<script src="{{ asset('assets/js/bundles//multiselect/js/jquery.multi-select.js') }}"></script>
+<script src="{{ asset('assets/js/bundles/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js') }}"></script>
+<script src="{{ asset('assets/js/pages/forms/advanced-form-elements.js') }}"></script>
+<script src="{{ asset('assets/js/pages/forms/basic-form-elements.js') }}"></script>
+<script src="{{ asset('assets/js/pages/forms/form-validation.js') }}"></script>
+
+@endpush
+
+

@@ -11,7 +11,11 @@ class FraisScolarite extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['user_id', 'niveau_id',  'classe_id', 'inscription',  'reinscription',
+<<<<<<< HEAD
         'scolarite',  'premiere_tranche_scolarite_inscription', 'deuxieme_tranch_scolarite_inscription',
+=======
+        'scolarite', 'premiere_tranche_scolarite_inscription', 'deuxieme_tranch_scolarite_inscription',
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
         'troisieme_tranch_scolarite_inscription', 'premiere_tranche_scolarite_reinscription',
         'deuxieme_tranch_scolarite_reinscription', 'troisieme_tranch_scolarite_reinscription',
         'total_inscription_scolarite', 'total_reinscription_scolarite'

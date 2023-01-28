@@ -80,61 +80,91 @@
 </form>
 @endif
 
-<!-- Debut delete Famille //////////////////////////////////////////////////////////////-->
-@if (Route::is(['famille.index']))
-<form action=" {{route('famille.destroy',$famille)}} " method="POST" >
-    @csrf
-    @method('DELETE')
-    <div class="modal" tabindex="-1" id="modal-open-{{$famille->id}}">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title">La supréssion est définitive</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="document.getElementById('modal-open-{{$famille->id}}').style.display='none' " aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h6>Est-vous sûr de vouloir suprimer</h6>
-                <p> Cette Famille  </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="document.getElementById('modal-open-{{$famille->id}}').style.display='none' " data-bs-dismiss="modal">Annuler</button>
-                <button type="submit" class="btn btn-primary">Oui</button>
-            </div>
-        </div>
-        </div>
-    </div>
-</form>
-@endif
-<!-- Fin delete Famille //////////////////////////////////////////////////////////////-->
 
-<!-- Debut delete Famille //////////////////////////////////////////////////////////////-->
+<!-- Debut delete eleve //////////////////////////////////////////////////////////////-->
 @if (Route::is(['eleve.index']))
 <form action=" {{route('eleve.destroy',$eleve)}} " method="POST" >
     @csrf
     @method('DELETE')
-    <div class="modal" tabindex="-1" id="modal-open-{{$eleve->id}}">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title">La supréssion est définitive</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="document.getElementById('modal-open-{{$eleve->id}}').style.display='none' " aria-label="Close"></button>
+    <div class="row clearfix js-sweetalert">
+        <!-- #START# Basic Modal -->
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+            <div class="modal fade" id="eleve" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">La supréssion est definive</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal"
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h6>Est-vous sûr de vouloir suprimer</h6>
+                            <p>
+                                {{$eleve->nom}}, {{$eleve->prenom}}
+                                Matricule:{{$eleve->matricule}}
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit"
+                                class="btn btn-info waves-effect">Suprimer</button>
+                            <button type="button" class="btn btn-danger waves-effect"
+                                data-bs-dismiss="modal">Anuler</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <h6>Est-vous sûr de vouloir suprimer</h6>
-                <p>
-                    {{$eleve->nom}}, {{$eleve->prenom}}
-                    Matricule:{{$eleve->matricule}}
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="document.getElementById('modal-open-{{$eleve->id}}').style.display='none' " data-bs-dismiss="modal">Annuler</button>
-                <button type="submit" class="btn btn-primary">Oui</button>
-            </div>
-        </div>
         </div>
     </div>
 </form>
 @endif
-<!-- Fin delete Famille //////////////////////////////////////////////////////////////-->
 
+<!-- Finc delete eleve //////////////////////////////////////////////////////////////-->
+
+
+<!-- Debut delete prof //////////////////////////////////////////////////////////////-->
+
+{{-- @if (Route::is(['prof.index']))
+<form action=" {{route('prof.destroy',$prof)}} " method="POST" >
+    @csrf
+    @method('DELETE')
+    <div class="row clearfix js-sweetalert">
+        <!-- #START# Basic Modal -->
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+            <div class="modal fade" id="prof" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">La supréssion est definive</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal"
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h6>Est-vous sûr de vouloir suprimer</h6>
+                            <p>
+                                {{$prof->nom}}, {{$prof->prenom}}
+                                Matricule:{{$prof->matricule}}
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit"
+                                class="btn btn-info waves-effect">Suprimer</button>
+                            <button type="button" class="btn btn-danger waves-effect"
+                                data-bs-dismiss="modal">Anuler</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@endif --}}
+<!-- fin delete prof //////////////////////////////////////////////////////////////-->
 

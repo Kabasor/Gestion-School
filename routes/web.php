@@ -2,15 +2,9 @@
 
 use App\Http\Controllers\AnneeController;
 use App\Http\Controllers\ClasseController;
-use App\Http\Controllers\EleveController;
 use App\Http\Controllers\FamilysController;
-use App\Http\Controllers\FraisScolariteController;
-use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\NiveauxController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ReinscriptionController;
-use App\Models\Famille;
-use App\Models\FraisScolarite;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,43 +18,49 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('index', [CustomAuthController::class, 'dashboard']);
+// Route::get('login', [CustomAuthController::class, 'index'])->name('login');
+// Route::get('liste_user', [CustomAuthController::class, 'liste'])->name('liste_user');
+// Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
+// Route::get('register', [CustomAuthController::class, 'registration'])->name('register-user');
+// Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
+// Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-// AJAX
-Route::get('get-frais-scolarite-classe/{classe?}', [FraisScolariteController::class, 'get_frais_scolarite_classe'])->name('frais.scolarite.classe');
 
 /*
     |--------------------------------------------------------------------------
-    | IMPRESSION
+    | Authentification et user
     |--------------------------------------------------------------------------
 */
-Route::get('print-inscription', [InscriptionController::class, 'print'])->name('print.inscription');
+Route::get('/', function () {
+    return view('welcome');
+});
+// Route::get('/admin.niveaux.add-niveaux', function () {
+//     return view('admin.niveaux.add-niveaux');
+// });
 
 
-Route::resource('inscription', InscriptionController::class);
-Route::resource('reinscription', ReinscriptionController::class);
-Route::resource('frais-scolarite', FraisScolariteController::class);
+Route::get('/tableau_bord1', function () {
+    return view('tableau_bord1');
+});
+// Route::prefix('admin')->group(function(){
+
+
+//  });
+
+
 Route::resource('annee', AnneeController::class);
 Route::resource('classe', ClasseController::class);
 Route::resource('niveau', NiveauxController::class);
+Route::resource('classe', ClasseController::class);
 Route::resource('famille', FamilysController::class);
 Route::resource('eleve', EleveController::class);
+Route::resource('prof', ProfController::class);
 
 
 
+Auth::routes();
 
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-require __DIR__.'/auth.php';

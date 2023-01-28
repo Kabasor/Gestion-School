@@ -22,7 +22,11 @@ return new class extends Migration
             $table->foreignId('classe_id')->nullable()->constrained('classes');
             $table->foreignId('niveau_id')->nullable()->constrained('niveaux');
             $table->foreignId('paiement_eleve_id')->nullable()->constrained('paiement_eleves');
+<<<<<<< HEAD
             $table->double('montant_payer')->unsigned()->nullable();
+=======
+            $table->double('montant_paye')->unsigned()->nullable();
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
             $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade');
             $table->softDeletes();
             $table->timestamps();

@@ -90,14 +90,27 @@
                                                                 <td>{{ $eleve->classe->libelle }}</td>
 
                                                                 <td class="center">
+<<<<<<< HEAD
                                                                     <a href="" class="btn btn-tbl-edit">
+=======
+                                                                    <a href="{{route('eleve.show',$eleve)}}" class="btn btn-tbl-edit">
+                                                                        <i class="material-icons">remove_red_eye</i>
+                                                                    </a>
+                                                                    <a href="{{route('eleve.edit',$eleve)}}" class="btn btn-tbl-edit">
+                                                                        <i class="material-icons">create</i>
+                                                                    </a>
+                                                                    {{-- <a href="" class="btn btn-tbl-edit">
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
                                                                         <i class="fas fa-eye"></i>
                                                                     </a>
                                                                     <a href="" class="btn btn-tbl-edit">
                                                                         <i class="material-icons">create</i>
+<<<<<<< HEAD
                                                                     </a>
                                                                     {{-- <a href="" class="btn btn-tbl-delete">
                                                                         <i class="material-icons">delete_forever</i>
+=======
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
                                                                     </a> --}}
                                                                     <form style="display: inline" action="@route('eleve.destroy', $eleve)" method="post">
                                                                         @csrf

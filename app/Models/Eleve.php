@@ -2,9 +2,21 @@
 
 namespace App\Models;
 
+<<<<<<< HEAD
 use App\Models\Famille;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+=======
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -29,7 +41,21 @@ class Eleve extends Model
      * @var array<string, string>
      */
     protected $casts = [
+<<<<<<< HEAD
         'date_naissance' => 'datetime',
+=======
+        'email_verified_at' => 'datetime',
+        // 'date_naissance' => 'datetime',
+
+    ];
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $with = [
+        'user','classe', 'niveau'
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
 
     ];
 
@@ -67,19 +93,29 @@ class Eleve extends Model
     {
         return $this->prenom . ' ' . $this->nom;
     }
+<<<<<<< HEAD
     /**
      * Interact with the etudiant's etudiant.
      *
      * @param  string  $value
      * @return \Illuminate\Database\Eloquent\Casts\Attribute
      */
+=======
+
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
     protected function dateNaissance(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => Carbon::parse($value),
+<<<<<<< HEAD
             // set: fn ($value) => Str::replace('/', '-', Carbon::parse($value)),
         );
     }
+=======
+        );
+    }
+
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -103,7 +139,11 @@ class Eleve extends Model
 
     public function classe()
     {
+<<<<<<< HEAD
         return $this->belongsTo(Classe::class);
+=======
+        return $this->belongsTo(Classe::class, 'classe_id');
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
     }
 
     public function inscription(): HasOne

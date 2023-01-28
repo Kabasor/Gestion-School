@@ -1,30 +1,35 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>Blize - Bootstrap 5 Admin Dashboard Template</title>
-    <!-- Favicon-->
-    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
-    <!-- Plugins Core Css -->
-    <link href="assets/css/app.min.css" rel="stylesheet">
-    <!-- Custom Css -->
-    <link href="assets/css/style.css" rel="stylesheet" />
-    <!-- Theme style. You can choose a theme from css/themes instead of get all themes -->
-    <link href="assets/css/styles/all-themes.css" rel="stylesheet" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+<title>Preskool - Login</title>
+
+<link rel="shortcut icon" href="assetss/img/favicon.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{asset('assetss/plugins/bootstrap/css/bootstrap.min.css')}}">
+
+<link rel="stylesheet" href="{{asset('assetss/plugins/feather/feather.css')}}">
+
+<link rel="stylesheet" href="{{asset('assetss/plugins/icons/flags/flags.css')}}">
+
+<link rel="stylesheet" href="{{asset('assetss/plugins/fontawesome/css/fontawesome.min.css')}}">
+<link rel="stylesheet" href="{{asset('assetss/plugins/fontawesome/css/all.min.css')}}">
+
+<link rel="stylesheet" href="{{asset('assetss/css/style.css')}}">
 </head>
 <body>
-     <div class="container" >
-              @yield('content')
-     </div>
+
+@yield('content')
+
+<script src="{{asset('assetss/js/jquery-3.6.0.min.js')}}"></script>
+
+<script src="{{asset('assetss/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<script src="{{asset('assetss/js/feather.min.js')}}"></script>
+
+<script src="{{asset('assetss/js/script.js')}}"></script>
 </body>
-<!-- Plugins Js -->
-<script src="assets/js/app.min.js"></script>
-<script src="assets/js/chart.min.js"></script>
-<script src="assets/js/bundles/apexcharts/apexcharts.min.js"></script>
-<!-- Custom Js -->
-<script src="assets/js/admin.js"></script>
-<script src="assets/js/pages/index.js"></script>
-</body>
+</html>

@@ -25,7 +25,7 @@
             <div class="m-t-30">
                 <img class="loading-img-spin" src="{{ asset('assets/images/loading.png')}}" alt="admin">
             </div>
-            <p>Please wait...</p>
+            <p>veillez patientez</p>
         </div>
     </div>
     <!-- #END# Page Loader -->

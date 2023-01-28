@@ -23,6 +23,10 @@ return new class extends Migration
             $table->foreignId('niveau_id')->nullable()->constrained('niveaux');
             $table->double('remise')->unsigned()->nullable();
             $table->double('dernier_payement')->unsigned()->nullable();
+<<<<<<< HEAD
+=======
+            $table->double('montant_paye')->unsigned()->nullable();
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
             $table->double('montant_total')->unsigned()->nullable();
             $table->float('pourcentage')->unsigned()->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade');

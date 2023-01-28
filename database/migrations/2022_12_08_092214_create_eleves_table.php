@@ -23,7 +23,11 @@ return new class extends Migration
             $table->string('date_naissance')->nullable();
             $table->string('lieu_naissance')->nullable();
             $table->string('telephone')->nullable()->unique();
+<<<<<<< HEAD
             $table->string('nationalite')->nullable();
+=======
+            $table->string('nationalite')->nullable(); 
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
             $table->string('adresse')->nullable();
             $table->string('sexe');
             $table->string('photo')->nullable();

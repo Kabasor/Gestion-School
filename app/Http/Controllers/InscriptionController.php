@@ -52,8 +52,13 @@ class InscriptionController extends Controller
             'matricule' => 'required|string|min:2|max:30',
             'nom' => 'required|string|min:2|max:30',
             'prenom' => 'required|string|min:2|max:50',
+<<<<<<< HEAD
             'date_de_naissance' => 'nullable|date',
             'lieu_de_naissance' => 'nullable|string|min:2|max:50',
+=======
+            'date_naissance' => 'nullable|date',
+            'lieu_naissance' => 'nullable|string|min:2|max:50',
+>>>>>>> 92ce2d17a3cb766d287ae3fa1d63a6e54de354da
             'sexe' => ['required', 'string', 'min:3', 'max:15', new Enum(EnumSexe::class)],
             'nationalite' => 'required|string|min:3|max:30',
             'pere' => 'nullable|string|min:3|max:100',
