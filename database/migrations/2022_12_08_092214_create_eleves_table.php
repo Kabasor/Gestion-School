@@ -16,19 +16,29 @@ return new class extends Migration
         Schema::create('eleves', function (Blueprint $table) {
             $table->id();
             $table->string('matricule')->nullable();
-            $table->string('nom')->nullable();
-            $table->string('prenom')->nullable();
-            $table->date('dateNaissance')->nullable();
-            $table->string('lieuNaissance')->nullable();
-            $table->string('genre')->nullable();
-            $table->string('nationalité')->nullable();
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('slug')->nullable()->unique();
+            $table->string('email')->nullable()->unique();
+            $table->string('date_naissance')->nullable();
+            $table->string('lieu_naissance')->nullable();
+            $table->string('telephone')->nullable()->unique();
+            $table->string('nationalite')->nullable();
+            $table->string('adresse')->nullable();
+            $table->string('sexe');
+            $table->string('photo')->nullable();
+
             $table->string('pere')->nullable();
             $table->string('mere')->nullable();
             $table->string('tuteur')->nullable();
-            $table->integer('phone')->nullable();
-            $table->string('adresse')->nullable();
-            $table->text('description')->nullable();
-            $table->string('image')->nullable();
+            $table->string('telephone_tuteur')->nullable();
+            $table->string('adresse_tuteur')->nullable();
+            $table->string('email_tuteur')->nullable();
+            $table->boolean('status')->default(true);
+            $table->foreignId('annee_scolarite_id')->nullable()->constrained('annee_scolarites')->index();
+            $table->foreignId('classe_id')->nullable()->constrained('classes');
+            $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

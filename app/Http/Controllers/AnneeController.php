@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Anneescolaire;
+use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AnneeController extends Controller
@@ -15,7 +15,7 @@ class AnneeController extends Controller
      */
     public function index()
     {
-          $annees = Anneescolaire::all();
+        $annees = Anneescolaire::all();
         return view('admin.annees.annee',compact('annees'));
     }
 
@@ -37,11 +37,15 @@ class AnneeController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'name'=>'required',
-            'description'=>'required',
+        $request->validate([
+            'annee_scolaire'=>'required|string|min:8',
+            'description'=>'nullable|string|min:3',
         ]);
-        $annee= Anneescolaire::create($validate);
+
+        $annee = Anneescolaire::create([
+            'anneescolaire' => $request->annee_scolaire
+        ]);
+
         $msg="Une Noulle Année a été ajouté avec succés";
         Alert::success('Felicitation', $msg);
         return redirect()->route('annee.index');
@@ -53,7 +57,7 @@ class AnneeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Anneescolaire $annee)
     {
         //
     }

@@ -42,12 +42,15 @@ class ClasseController extends Controller
 
         $validate = $request->validate([
             'niveau'=> ['required', 'integer', 'min:1', Rule::exists('niveaux', "id")],
-            'libelle'=>'required|min:2|max:255',
-            'description'=>''
+            'libelle'=> 'required|string|min:2|max:255',
+            'description'=> ['nullable', 'string', 'min:3', 'max:255']
 
         ]);
-
-        $classe= Classe::create($validate);
+        // dd($request->all());
+        $classe= Classe::create([
+            'libelle' => $request->libelle,
+            'description' => $request->description,
+        ]);
         $msg="Une Noulle Année a été ajouté avec succés";
         Alert::success('Felicitation', $msg);
         return \redirect()->route('classe.index');

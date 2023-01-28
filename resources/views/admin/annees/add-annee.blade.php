@@ -77,7 +77,7 @@
  --}}
 
 
- <form action=" {{route('annee.store')}}" method="post" enctype="multipart/form-data">
+ <form action=" {{route('annee.store')}}" method="post" >
     @csrf
     {{-- fade bd-example-modal-lg --}}
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
@@ -98,10 +98,10 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="form">
-                                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror " placeholder="Année Scolaire">
-                                        @error('name')
+                                        <input type="text" name="annee_scolaire" class="form-control @error('annee_scolaire') is-invalid @enderror " value="{{ old('annee_scolaire') }}" placeholder="Année Scolaire">
+                                        @error('annee_scolaire')
                                         <div class="invalid-feedback">
-                                            {{ $errors->first('name') }}
+                                            {{ $errors->first('annee_scolaire') }}
                                         </div>
                                         @enderror
                                     </div>

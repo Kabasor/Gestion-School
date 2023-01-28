@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Eleve;
 use App\Models\Famille;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class EleveController extends Controller
@@ -18,7 +21,8 @@ class EleveController extends Controller
     public function index()
     {
         $eleves = Eleve::all();
-        return view('admin.eleves.eleve',compact('eleves'));
+        return view('containers.gestion-eleves.eleves.eleves', compact('eleves'));
+        // return view('admin.eleves.eleve',compact('eleves'));
     }
 
     /**
@@ -103,6 +107,37 @@ class EleveController extends Controller
      */
     public function update(Request $request, Eleve $eleve)
     {
+        if ($request->hasFile('photo')) {
+
+            //verification s'il possede deja une photo
+            if ($eleve->photo) {
+                $photoPath = $eleve->photo;
+                $exists = Storage::disk('public')->exists($photoPath);
+
+                // supprime l'ancienne photo qui a ete trouvé
+                if ($exists) {
+                    Storage::disk('public')->delete($photoPath);
+                }
+            }
+
+            $username = Str::slug($request->nom . ' ' . $request->prenom);
+            $filename = $username . '.' . time() . '.' . $request->photo->extension();
+
+            $path = $request->file('photo')->storeAs(
+                'eleves',
+                $filename,
+                'public',
+            );
+
+            $image = Image::make(public_path("/storage/{$path}"))->fit(100, 100);
+            $image->save();
+        } else {
+            if ($eleve->photo) {
+                $path =  $eleve->photo;
+            } else {
+                $path = '';
+            }
+        }
 
         $request->validate([
             'matricule'=>'required',

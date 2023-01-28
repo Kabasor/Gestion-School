@@ -82,7 +82,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -95,7 +95,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'fr',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,7 +108,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'fr_FR',
 
     /*
     |--------------------------------------------------------------------------
@@ -208,8 +208,25 @@ return [
     |
     */
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
-    'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'User' => App\Models\User::class,
+        'Etudiant' => App\Models\Etudiant::class,
+        'Js' => Illuminate\Support\Js::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+        'EnumDays' => \App\Enums\EnumDays::class,
+        'EnumHoraires' => \App\Enums\EnumHoraires::class,
+        'EnumMonths' => \App\Enums\EnumMonths::class,
+        'EnumMonthsKey' => \App\Enums\EnumMonthsKey::class,
+        'EnumModePaiement' => \App\Enums\EnumModePaiement::class,
+        'EnumTypePaiementBank' => \App\Enums\EnumTypePaiementBank::class,
+        'EnumTypePaiementCaisse' => \App\Enums\EnumTypePaiementCaisse::class,
+        'EnumTypeCompteBank' => \App\Enums\EnumTypeCompteBank::class,
+        'EnumPeriodePaiement' => \App\Enums\EnumPeriodePaiement::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'EnumSexe' => \App\Enums\EnumSexe::class,
+        'Carbon' => \Carbon\Carbon::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+
     ])->toArray(),
 
 ];

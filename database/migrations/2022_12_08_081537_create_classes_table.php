@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('niveau_id');
             $table->string('libelle')->nullable();
             $table->text('description')->nullable();
-            $table->foreign('niveau_id')->references('id')->on('niveaux')->onDelete('cascade');
+            $table->foreignId('niveau_id')->nullable()->constrained()->onUpdate('cascade');
+            $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade')->index();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

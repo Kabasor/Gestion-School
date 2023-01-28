@@ -45,9 +45,9 @@
                                 <?php $i = 0; ?>
                                 @foreach ($annees as $annee)
                                 <tr>
-                                    <?php $i++; ?>
-                                    <th scope="row">{{$i}} </th>
-                                    <td>{{$annee->name}}</td>
+
+                                    <th scope="row">{{ $loop->iteration }} </th>
+                                    <td>{{ $annee->anneescolaire }}</td>
                                     <td>{{$annee->description}}</td>
                                     <td>
                                         @include('admin.annees.edit-annee')
