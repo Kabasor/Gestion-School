@@ -18,9 +18,13 @@ return new class extends Migration
             $table->foreignId('eleve_id')->nullable()->constrained('eleves');
             $table->foreignId('classe_id')->nullable()->constrained('classes');
             $table->foreignId('annee_scolarite_id')->nullable()->constrained('annee_scolarites')->index();
-            $table->double('remise')->unsigned()->nullable();
-            $table->year('last_reinscription')->nullable()->default(now()->year);
-            $table->boolean('reinscrit')->default(false);
+            // $table->double('remise')->unsigned()->nullable();
+            // $table->double('montant')->unsigned()->nullable();
+            // $table->double('montant_reinscription')->unsigned()->nullable();
+            // $table->double('montant_paye')->unsigned()->nullable();
+            // $table->double('reste')->unsigned()->nullable();
+            // $table->year('last_reinscription')->nullable()->default(now()->year);
+            // $table->boolean('reinscrit')->default(false);
             $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade');
             $table->softDeletes();
             $table->timestamps();

@@ -26,8 +26,8 @@ class NiveauxController extends Controller
      */
     public function create()
     {
-        // $niveau = Niveau::all();
-        return view('admin.niveaux.add-niveaux' );
+        $niveau = Niveau::all();
+        return view('admin.niveaux.add-niveaux',compact('niveau'));
     }
 
     /**
@@ -40,7 +40,7 @@ class NiveauxController extends Controller
     {
         $validate = $request->validate([
             'libelle'=>'required|min:2|max:255',
-            'description'=>'required'
+            'description'=>'nullable'
 
         ]);
 
@@ -85,7 +85,7 @@ class NiveauxController extends Controller
         $update=[
 
             'libelle'=>'required|min:2|max:255',
-            'description'=>'required'
+            'description'=>'nullable'
         ];
         $niveau->update([
             'libelle'=>$request->libelle,

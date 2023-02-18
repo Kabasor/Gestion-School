@@ -122,7 +122,7 @@ class User extends Authenticatable
         parent::boot();
 
         self::creating(function ($user) {
-            // $user->password = Hash::make(PASSWORD_DEFAULT);
+            $user->password = Hash::make(12345678);
             $user->active = true;
             $user->user()->associate(Auth::id());
         });

@@ -22,13 +22,15 @@ return new class extends Migration
             $table->string('diplome')->nullable();
             $table->integer('phone')->nullable();
             $table->string('adresse')->nullable();
+            $table->string('salaire')->nullable();
             $table->string('genre')->nullable();
             $table->string('nationalite')->nullable();
             $table->date('dateNaissance')->nullable();
-            $table->string('lieuNaissance')->nullable();
+            $table->string('lieunaissance')->nullable();
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
+            $table->foreignId('niveau_id')->nullable()->constrained('niveaux');
             $table->timestamps();
         });
     }

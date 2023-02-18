@@ -14,7 +14,7 @@ class HistoriquePaiementEleve extends Model
     use HasFactory, SoftDeletes, Sluggable;
 
     protected $fillable = [
-        'libelle', 'slug',  'eleve_id',  'annee_scolarite_id', 'remise', 'dernier_payement',
+        'libelle', 'slug',  'eleve_id',  'annee_scolarite_id', 'montant_paye','remise', 'dernier_payement',
         'montant_total',  'pourcentage',  'user_id', 'paiement_eleve_id', 'classe_id', 'niveau_id'
     ];
 
@@ -62,17 +62,17 @@ class HistoriquePaiementEleve extends Model
     }
     public function classe(): BelongsTo
     {
-        return $this->belongsTo(Classe::class);
+        return $this->belongsTo(Classe::class)->withDefault();
     }
 
     public function eleve(): BelongsTo
     {
-        return $this->belongsTo(Eleve::class);
+        return $this->belongsTo(Eleve::class)->withDefault();
     }
 
     public function paiementEleve(): BelongsTo
     {
-        return $this->belongsTo(PaiementEleve::class);
+        return $this->belongsTo(PaiementEleve::class)->withDefault();
     }
 
     /**

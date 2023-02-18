@@ -38,7 +38,7 @@ return [
     |
     |
     */
-    'name' => "Universite Al-Eamar",
+    'name' => "Groups scolaire ELITE",
 
 
     /*

@@ -59,7 +59,8 @@
                                     <td>{{$annee->description}}</td>
                                     <td>
                                         @include('admin.annees.edit-annee')
-                                        <a href="{{route('annee.edit',$annee)}}" class="btn btn-tbl-edit">
+                                        <a href="{{route('annee.edit',$annee)}}" class="btn btn-tbl-edit" data-bs-toggle="modal"
+                                        data-bs-target=".modifier-annee">
                                             <i class="material-icons">create</i>
                                         </a>
                                         <form style="display: inline" action="@route('annee.destroy', $annee)" method="post">

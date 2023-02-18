@@ -53,9 +53,6 @@ class AnneeController extends Controller
             'description'=>$request->description,
 
         ]);
-
-        $msg="Une Noulle Année a été ajouté avec succés";
-        Alert::success('Felicitation', $msg);
         return redirect()->route('annee.index');
     }
 
@@ -91,19 +88,19 @@ class AnneeController extends Controller
     public function update(Request $request, Anneescolaire $annee)
     {
         $validate = $request->validate([
-            'annee_scolaire'=>'required|string|min:8',
+            'anneescolaire'=>'required|string|min:8',
             'date_debut'=>'nullable|numeric',
             'date_fin'=>'nullable|numeric',
             'description'=>'nullable|string|min:3',
         ]);
 
         $annee->update([
-            'anneescolaire' => $request->annee_scolaire,
+            'anneescolaire' => $request->anneescolaire,
             'date_debut'=>$request->date_debut,
             'date_fin'=>$request->date_fin,
+            'description'=>$request->description
+
         ]);
-        $msg="l'année {{$annee->name}} a été modifiée avec succés";
-        Alert::warning('Felicitation',$msg);
         return redirect()->route('annee.index');
     }
 
@@ -116,8 +113,6 @@ class AnneeController extends Controller
     public function destroy(Request $request , Anneescolaire $annee)
     {
         $annee->delete();
-        $msg="Une Année a été suprimé avec succés";
-        Alert::alert('Felicitation', $msg);
         return redirect()->route('annee.index');
     }
 }

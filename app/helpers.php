@@ -1,12 +1,13 @@
 <?php
 
-use App\Models\Anneescolaire;
-use App\Models\Classe;
-use App\Models\FraisScolarite;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Route;
+use App\Models\Eleve;
+use App\Models\Classe;
 use Illuminate\Support\Str;
+use App\Models\Anneescolaire;
+use App\Models\FraisScolarite;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Database\Eloquent\Collection;
 
 
 if (!function_exists('page_title')) {
@@ -70,6 +71,12 @@ if (!function_exists('get_comptable')) {
         return User::whereFonction(User::COMPTA)->first();
     }
 }
+if (!function_exists('get_eleve')) {
+    function get_eleve($id)
+    {
+        return Eleve::find($id);
+    }
+}
 if (!function_exists('get_classe')) {
     function get_classe($id)
     {
@@ -110,3 +117,4 @@ if (!function_exists('get_frais_scolarite_classe')) {
         return FraisScolarite::whereRelation('classe', 'id', $classe_id)->first() ?? null;
     }
 }
+

@@ -30,8 +30,6 @@
                                 </ul>
                             </div>
                         </div>
-
-
                         <div class="body">
                             <div class="table-responsive">
                                 <table id="tableExport"
@@ -42,7 +40,6 @@
                                     <th>Niveau</th>
                                     <th>Description</th>
                                     <th>Action</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,7 +53,7 @@
                                         <a href="{{route('niveau.edit',$niveau)}}" class="btn btn-tbl-edit">
                                             <i class="material-icons">create</i>
                                         </a>
-                                        <form style="display: inline" action="@route('niveau.destroy', $niveau)" method="post">
+                                        <form style="display: inline" action="@route('niveau.destroy',$niveau)" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-tbl-delete btn-sm delete-confirm" data-name="{{$niveau->id}}" type="submit">

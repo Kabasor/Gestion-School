@@ -14,9 +14,20 @@ class PaiementEleve extends Model
 {
     use HasFactory, SoftDeletes, Sluggable;
 
-    protected $fillable = ['libelle', 'slug',  'eleve_id',  'annee_scolarite_id', 'remise',
-     'dernier_payement','montant_paye',
-        'montant_total',  'pourcentage',  'user_id', 'classe_id', 'niveau_id'
+    protected $fillable = [
+    'libelle',
+    'slug',
+    'eleve_id',
+    'classe_id',
+    'niveau_id',
+    'annee_scolarite_id',
+    'remise',
+    'dernier_payement',
+    'montant_paye',
+    'montant_total',
+    'pourcentage',
+    'user_id',
+
     ];
 
     /**

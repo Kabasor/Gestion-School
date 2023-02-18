@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Note;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -99,6 +100,11 @@ class Eleve extends Model
         return $this->belongsTo(Anneescolaire::class)->withDefault();
     }
 
+    public function notes(): HasMany
+    {
+        return $this->hasMany(Note::class);
+    }
+
 
     public function niveau()
     {
@@ -133,7 +139,7 @@ class Eleve extends Model
         return $this->hasOne(PaiementEleve::class, 'eleve_id')->latestOfMany();
     }
 
-    public function historiquePaiments(): HasMany
+    public function historiquePaiements(): HasMany
     {
         return $this->hasMany(HistoriquePaiementEleve::class, 'eleve_id');
     }

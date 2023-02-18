@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('anneescolaires', function (Blueprint $table) {
             $table->id();
             $table->string('anneescolaire');
+            $table->string('slug')->unique();
             $table->string('session_annee_fin');
             $table->string('date_debut')->nullable();
             $table->string('date_fin')->nullable();

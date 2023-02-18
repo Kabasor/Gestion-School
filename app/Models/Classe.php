@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use App\Models\Niveau;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Emploie;
+use App\Models\Matiere;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Classe extends Model
 {
@@ -17,7 +20,7 @@ class Classe extends Model
         'libelle',
         'description',
         'user_id',
-
+        'slug'
 
     ];
 
@@ -30,7 +33,7 @@ class Classe extends Model
     // {
     //     return [
     //         'slug' => [
-    //             'source' => 'departement'
+    //             'source' => 'libelle'
     //         ]
     //     ];
     // }
@@ -41,6 +44,22 @@ class Classe extends Model
         self::creating(function ($classe) {
             $classe->niveau()->associate(request()->niveau);
         });
+
+    }
+
+    public function emploie()
+    {
+        return $this->belongsTo(Emploie::class,);
+    }
+
+    public function fraisScolarite()
+    {
+        return $this->hasOne(FraisScolarite::class);
+    }
+
+    public function matieres(): HasMany
+    {
+        return $this->hasMany(Matiere::class,);
     }
 
     public function niveau(): BelongsTo

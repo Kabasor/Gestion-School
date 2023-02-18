@@ -52,7 +52,7 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="card">
                                                 <div class="body">
-                                                    <form action="@route('frais-scolarite.store')" id="form_advanced_validation" method="POST">
+                                                    <form action="@route('fraiscolarite.store')" id="form_advanced_validation" method="POST">
                                                         @csrf
                                                         <div class="row">
                                                             <div class="row mt-3">
@@ -172,7 +172,20 @@
                                                         <td>{{ format_price($fraisScolarite->deuxieme_tranch_scolarite_inscription) }}</td>
                                                         <td>{{ format_price($fraisScolarite->troisieme_tranch_scolarite_inscription) }}</td>
                                                         <td>
-                                                            Actions
+                                                            {{-- <a href="{{route('fraiscolarite.show',$fraisScolarite)}}" class="btn btn-tbl-edit">
+                                                                <i class="material-icons">remove_red_eye</i>
+                                                            </a> --}}
+                                                            <a href="{{route('fraiscolarite.edit',$fraisScolarite)}}" class="btn btn-tbl-edit">
+                                                                <i class="material-icons">create</i>
+                                                            </a>
+
+                                                            <form style="display: inline" action="@route('fraiscolarite.destroy', $fraisScolarite)" method="post">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button class="btn btn-tbl-delete btn-sm delete-confirm" data-name="{{$fraisScolarite->id}}" type="submit">
+                                                                    <i class="material-icons">delete_forever</i>
+                                                                </button>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 @endforeach

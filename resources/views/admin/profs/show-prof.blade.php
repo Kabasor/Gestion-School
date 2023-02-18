@@ -53,10 +53,13 @@
                                     <p>Date de naissance : {{$prof->dateNaissance}}</p>
                                 </div>
                                 <div>
-                                    <p>Lieu de naissance : {{$prof->lieuNaissance}}</p>
+                                    <p>Lieu de naissance : {{$prof->lieunaissance}}</p>
                                 </div>
                                 <div>
                                     <p>Diplôme : {{$prof->diplome}}</p>
+                                </div>
+                                <div>
+                                    <p>Niveau : {{$prof->niveau->libelle}}</p>
                                 </div>
                             </div>
                         </div>

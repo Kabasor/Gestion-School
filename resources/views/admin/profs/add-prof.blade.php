@@ -1,8 +1,8 @@
 @extends('layouts.default')
-@push('styles')
+    @push('styles')
     <link href="{{ asset('assets/css/form.min.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/js/bundles/multiselect/css/multi-select.css')}}" rel="stylesheet">
-@endpush
+    @endpush
 @section('content')
     <section class="content">
         <div class="container-fluid">
@@ -45,10 +45,18 @@
                             </ul>
                         </div>
                         <div class="body">
+                            @if ($errors->any())
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+
+                            @endif
                         <form action=" {{route('prof.store')}} " method="POST" enctype="multipart/form-data">
                             @csrf
                                     <div class="row clearfix">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-3">
                                             <div class="form-group">
                                                 <label for="Matricule">Matricule <span class="text-danger">*</span> :</label>
                                                 <input type="text" class="form-control @error('matricule') is-invalid @enderror" name="matricule" value=" {{old('matricule')}}" />
@@ -59,7 +67,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <div class="form">
                                                 <label for="nom">Nom <span class="text-danger">*</span> :</label>
@@ -72,9 +80,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="prenom">Prenom <span class="text-danger">*</span> :</label>
                                             <input type="text" class="form-control @error('prenom') is-invalid @enderror" name="prenom" value=" {{old('prenom')}}" />
@@ -85,34 +91,63 @@
                                             @enderror
                                         </div>
                                     </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <div class="form">
-                                            <label for="email">Email <span class="text-danger">*</span> :</label>
-                                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value=" {{old('email')}}" />
-                                            @error('email')
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <div class="form">
+                                                <label for="email">Email <span class="text-danger">*</span> :</label>
+                                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value=" {{old('email')}}" />
+                                                @error('email')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-3 mt-3">
+                                        <div class="form-group default-select select2Style">
+                                            <label>Séléctionnez le sexe <span class="text-danger">*</span> </label>
+                                            <select name="genre" id="genre" class="form-control select2 @error('genre') is-invalid @enderror" data-placeholder="Séléctionnez le Sexe">
+                                                <option> Masculin </option>
+                                                <option> Feminin </option>
+                                            </select>
+                                            @error('genre')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="diplome">Diplome <span class="text-danger">*</span> :</label>
-                                            <select  name="diplome" id="diplome">
+                                    <div class="col-sm-3 mt-3">
+                                        <div class="form-group default-select select2Style">
+                                            <label>Séléctionnez le diplôme <span class="text-danger">*</span> </label>
+                                            <select name="diplome" id="diplome" class="form-control select2 @error('diplome') is-invalid @enderror" data-placeholder="Séléctionnez le Sexe">
                                                 <option> Licence </option>
                                                 <option> Maitrise </option>
                                                 <option> Master </option>
                                                 <option> Doctorat </option>
                                             </select>
-
+                                            @error('diplome')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="adresse">Adresse <span class="text-danger">*</span> :</label>
+                                            <input type="text" class="form-control @error('adresse') is-invalid @enderror" name="adresse" value=" {{old('adresse')}}" />
+                                            @error('adresse')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
                                     <div class="form-group">
                                         <div class="form">
                                             <label for="phone">Téléphone <span class="text-danger">*</span> :</label>
@@ -127,50 +162,18 @@
                                 </div>
                                 </div>
                                 <div class="row clearfix">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label for="adresse">Adresse <span class="text-danger">*</span> :</label>
-                                            <input type="text" class="form-control @error('adresse') is-invalid @enderror" name="adresse" value=" {{old('adresse')}}" />
-                                            @error('adresse')
+                                            <label for="salaire">salaire de base <span class="text-danger">*</span> :</label>
+                                            <input type="text" class="form-control @error('salaire') is-invalid @enderror" name="salaire" value=" {{old('salaire')}}" />
+                                            @error('salaire')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
                                             @enderror
-                                        </div>
-                                    </div>
-                                    
-                                    {{-- <div class="col-sm-6 mt-2">
-                                        <div class="form-group default-select select2Style">
-                                            <label>Séléctionnez le Sexe</label>
-                                            <select name="genre" class="form-control select2" data-placeholder="Séléctionnez le Sexe">
-                                                @foreach (EnumSexe::cases() as $genre)
-                                                    <option value="{{ $genre->value }}"
-                                                        @selected(old('genre'))>
-                                                        {{ $genre }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @error('genre')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
                                             </div>
-                                            @enderror
                                         </div>
-                                    </div> --}}
-                                    <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <div class="form">
-                                            <label for="genre">Séléctionez le sexe<span class="text-danger">*</span> :</label>
-                                            <select  name="genre" id="genre">
-                                                <option> Masculin </option>
-                                                <option> Feminin </option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="nationalite">Nationalité <span class="text-danger">*</span> :</label>
                                             <input type="text" class="form-control @error('nationalite') is-invalid @enderror" name="nationalite" value=" {{old('nationalite')}}" />
@@ -181,7 +184,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-sm-6 ">
+                                    <div class="col-sm-3 ">
                                         <div class="form-group ">
                                             <div class="form-line">
                                                 <label for="email_address">Date de naissance</label>
@@ -198,24 +201,39 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
-                                            <label for="lieuNaissance">Lieu de naissance <span class="text-danger">*</span> :</label>
-                                            <input type="text" class="form-control @error('lieuNaissance') is-invalid @enderror" name="lieuNaissance" value=" {{old('lieuNaissance')}}" />
-                                            @error('lieuNaissance')
+                                            <label for="lieunaissance">Lieu de naissance <span class="text-danger">*</span> :</label>
+                                            <input type="text" class="form-control @error('lieunaissance') is-invalid @enderror" name="lieunaissance" value=" {{old('lieunaissance')}}" />
+                                            @error('lieunaissance')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-4 mt-3">
+                                        <div class="form-group default-select select2Style">
+                                            <label>Séléctionnez le niveau</label>
+                                            <select name="niveau_id" id="niveau_id" class="form-control select2" data-placeholder="Séléctionnez le niveau">
+                                                @foreach ($niveaux as $niveau )
+                                                <option value="{{$niveau->id}}"> {{$niveau->libelle}} </option>
+                                                @endforeach
+                                            </select>
+                                            @error('niveau_id')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
                                     <div class="form-group">
                                         <div class="form">
                                             <label for="description">description :</label>
-                                            <textarea id="description" name="description" class="form-control" value=" {{old('lieuNaissance')}}" data-length="120"></textarea>
+                                            <textarea id="description" name="description" class="form-control" value=" {{old('description')}}" data-length="120"></textarea>
                                         </div>
                                     </div>
                                     </div>
@@ -261,7 +279,6 @@
 <script src="{{ asset('assets/js/pages/forms/advanced-form-elements.js') }}"></script>
 <script src="{{ asset('assets/js/pages/forms/basic-form-elements.js') }}"></script>
 <script src="{{ asset('assets/js/pages/forms/form-validation.js') }}"></script>
-
 @endpush
 
 

@@ -96,12 +96,6 @@
                                                                     <a href="{{route('eleve.edit',$eleve)}}" class="btn btn-tbl-edit">
                                                                         <i class="material-icons">create</i>
                                                                     </a>
-                                                                    {{-- <a href="" class="btn btn-tbl-edit">
-                                                                        <i class="fas fa-eye"></i>
-                                                                    </a>
-                                                                    <a href="" class="btn btn-tbl-edit">
-                                                                        <i class="material-icons">create</i>
-                                                                    </a> --}}
                                                                     <form style="display: inline" action="@route('eleve.destroy', $eleve)" method="post">
                                                                         @csrf
                                                                         @method('DELETE')
@@ -133,6 +127,8 @@
                                                     <th>Lieu</th>
                                                     <th>Sexe</th>
                                                     <th>Classe</th>
+                                                    {{-- <th>Montan Payer</th>
+                                                    <th>Rest à payer</th> --}}
 
                                                     <th>Action</th>
                                                 </tr>
@@ -148,6 +144,8 @@
                                                         <td>{{ $eleve->lieu_naissance }}</td>
                                                         <td>{{ $eleve->sexe }}</td>
                                                         <td>{{ $eleve->classe->libelle }}</td>
+                                                        {{-- <td>{{ $eleve->inscription->montant_paye}}</td>
+                                                        <td>{{ $eleve->inscription->reste }}</td> --}}
 
                                                         <td>
                                                             Actions

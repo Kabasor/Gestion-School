@@ -13,7 +13,7 @@ class Inscription extends Model
     use HasFactory, SoftDeletes, Sluggable;
 
     protected $fillable = ['libelle','slug',  'eleve_id', 'annee_scolarite_id', 'remise',  'montant',
-                        'montant_inscription', 'montant_payer',  'reste'
+                       
     ];
 
     /**

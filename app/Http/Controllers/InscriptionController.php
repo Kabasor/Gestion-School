@@ -26,7 +26,7 @@ class InscriptionController extends Controller
     {
         $inscriptions = Inscription::AnneeScolariteId()->latest()->get();
         $classes = Classe::with(['niveau'])->oldest()->get();
-        return view('containers.gestion-eleves.inscriptions.inscription', compact('classes', 'inscriptions'));
+        return view('containers.gestion-eleves.inscriptions.liste-inscription', compact('classes', 'inscriptions'));
     }
 
     /**
@@ -36,7 +36,9 @@ class InscriptionController extends Controller
      */
     public function create()
     {
-        //
+        $inscriptions = Inscription::AnneeScolariteId()->latest()->get();
+        $classes = Classe::with(['niveau'])->oldest()->get();
+        return view('containers.gestion-eleves.inscriptions.add-inscription', compact('classes', 'inscriptions'));
     }
 
     /**
@@ -52,7 +54,7 @@ class InscriptionController extends Controller
             'matricule' => 'required|string|min:2|max:30',
             'nom' => 'required|string|min:2|max:30',
             'prenom' => 'required|string|min:2|max:50',
-            'date_naissance' => 'nullable|date',
+            'date_naissance' => 'nullable|string',
             'lieu_naissance' => 'nullable|string|min:2|max:50',
             'sexe' => ['required', 'string', 'min:3', 'max:15', new Enum(EnumSexe::class)],
             'nationalite' => 'required|string|min:3|max:30',
@@ -64,7 +66,7 @@ class InscriptionController extends Controller
             'adresse_tuteur' => 'nullable|string|min:3|max:30',
             'classe' => ['required', 'numeric', Rule::exists('classes', 'id')],
             'photo' => ['nullable', 'image', 'mimes:jpeg,jpg,png',],
-            'montant_paye' => ['nullable', 'string', 'min:0',],
+            // 'montant_paye' => ['nullable', 'string', 'min:0',],
         ]);
         // dd($request->all());
 
@@ -83,25 +85,7 @@ class InscriptionController extends Controller
         } else {
             $path = '';
         }
-        $montant_paye = format_number($request->montant_paye);
-        if ($montant_paye < 0) {
-            Alert::error('Erreur', "Le montant payé doit être supérieur à 1 ! ");
-            return back();
-            // return back()->with(['msg-error' => "Le montant payé doit être supérieur à 1 !"]);
-        }
-        $classe_id = $request->classe;
-        // $classe = get_classe($classe_id);
 
-        $frais = get_frais_scolarite_classe($classe_id);
-
-        if (!($frais)) {
-
-            Alert::error('Erreur', "Frais de scolarité non établi pour la classe choisi !");
-            return back();
-        }
-
-        $frais_ins = $frais->inscription;
-        $total_inscription_scolarite = $frais->total_inscription_scolarite;
 
         $eleve = Eleve::create([
             'matricule' => $request->matricule,
@@ -118,50 +102,23 @@ class InscriptionController extends Controller
             'adresse_tuteur' => $request->adresse_tuteur,
             'email_tuteur' => $request->email_tuteur,
             'photo' => $path,
+            // 'montant_paye'=>$montant_paye,
             // 'nouveau' => true,
             'status' => true,
         ]);
-        $libelle = "Inscription ";
 
-        if ($montant_paye > $frais_ins) {
-            $libelle .= " + Scolarité";
-        }
-        // $eleve->inscription()->save($inscription);
         $inscription = $eleve->inscription()->create([
-            'libelle' => $libelle,
+            // 'libelle' => $libelle,
             // 'status' => false,
-            'montant_inscription' => $frais_ins,
-            'montant' => $total_inscription_scolarite,
-            'montant_paye' => $montant_paye,
-            'pourcentage' => ($montant_paye / $total_inscription_scolarite),
-        ]);
-
-        $paiement = $eleve->paiements()->create([
-            // 'eleve_id' => $eleve->classe->niveau->id,
-            'niveau_id' => $eleve->classe->niveau->id,
-            'libelle' => $libelle,
-            'dernier_payement' => $montant_paye,
-            'montant_total' => $total_inscription_scolarite,
+            // 'montant_inscription' => $frais_ins,
+            // 'montant' => $total_inscription_scolarite,
+            // 'montant_paye' => $montant_paye,
             // 'reste' => ($total_inscription_scolarite - $montant_paye),
-            'pourcentage' => ($montant_paye / $total_inscription_scolarite),
-            // 'status' => false,
+            // 'pourcentage' => ($montant_paye / $total_inscription_scolarite),
         ]);
+        $fullname = $eleve->prenom . '-'. $eleve->nom;
 
-        if ($paiement) {
-            $historique = $eleve->historiquePaiments()->create([
-                'niveau_id' => $eleve->classe->niveau->id,
-                // 'eleve_id' => $eleve->classe->niveau->id,
-                'libelle' => $libelle,
-                'montant_paye' => $montant_paye,
-                'paiement_eleve_id' => $paiement->id,
-                // 'montant_total' => $total_inscription_scolarite,
-            ]);
-        }
-
-        $feminin = $eleve->sexe === EnumSexe::FEMININ->value ? 'e' : '';
-        $fullname = $eleve->prenom . ' ' . $eleve->nom;
-
-        Alert::success('Félicitation', "Inscription de l eleve{$feminin} {$fullname} effectuée avec succès !");
+        Alert::success('Félicitation', "Inscription de l eleve{$fullname} effectuée avec succès !");
 
         return back();
 
@@ -174,7 +131,7 @@ class InscriptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Inscription $inscription)
     {
         //
     }
@@ -185,7 +142,7 @@ class InscriptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Inscription $inscription)
     {
         //
     }
@@ -197,7 +154,7 @@ class InscriptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Inscription $inscription)
     {
         //
     }
@@ -208,9 +165,10 @@ class InscriptionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Inscription $inscription)
     {
-        //
+         $inscription->delete();
+         return redirecte()->route('inscription.index');
     }
 
 

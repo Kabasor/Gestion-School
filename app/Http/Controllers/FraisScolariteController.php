@@ -119,9 +119,10 @@ class FraisScolariteController extends Controller
      * @param  \App\Models\FraisScolarite  $fraisScolarite
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FraisScolarite $fraisScolarite)
+    public function destroy(Request $request, FraisScolarite $fraisScolarite)
     {
-        //
+        $fraisScolarite->delete();
+        return back();
     }
 
     public function get_frais_scolarite_classe($classe)

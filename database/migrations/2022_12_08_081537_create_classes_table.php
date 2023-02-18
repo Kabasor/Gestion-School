@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->id();
             $table->string('libelle')->nullable();
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->foreignId('niveau_id')->nullable()->constrained()->onUpdate('cascade');
             $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade')->index();

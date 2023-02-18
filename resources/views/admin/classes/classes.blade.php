@@ -31,8 +31,6 @@
                             </ul>
                         </div>
                     </div>
-
-
                     <div class="body">
                         <div class="table-responsive">
                             <table id="tableExport"

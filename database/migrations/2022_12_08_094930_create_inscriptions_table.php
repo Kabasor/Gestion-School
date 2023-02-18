@@ -22,7 +22,7 @@ return new class extends Migration
             $table->double('remise')->unsigned()->nullable();
             $table->double('montant')->unsigned()->nullable();
             $table->double('montant_inscription')->unsigned()->nullable();
-            $table->double('montant_payer')->unsigned()->nullable();
+            $table->double('montant_paye')->unsigned()->nullable();
             $table->double('reste')->unsigned()->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade');
             $table->softDeletes();

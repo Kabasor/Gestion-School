@@ -32,13 +32,11 @@
                             <div class="row clearfix">
                             <div class="col-sm-6 ">
                                     <div class="form-group default-select select2Style">
-                                        <label>Séléctionnez le Niveau </label>
-                                        <select name="niveau" id="niveau_id" class="form-control select2 @error('niveau_id') is-invalid @enderror" data-placeholder="Séléctionnez le Sexe">
-                                            {{-- <select name=""  class="form-control  " placeholder="select">> --}}
-                                                @foreach ($niveaux as $niveau )
-                                                    <option value="{{$niveau->id}}"> {{$niveau->libelle}} </option>
-                                                @endforeach
-                                            {{-- </select> --}}
+                                        <label>Séléctionnez le niveau</label>
+                                        <select name="niveau" id="niveau_id" class="form-control select2" data-placeholder="Séléctionnez le niveau">
+                                            @foreach ($niveaux as $niveau )
+                                            <option value="{{$niveau->id}}"> {{$niveau->libelle}} </option>
+                                            @endforeach
                                         </select>
                                         @error('niveau_id')
                                         <div class="invalid-feedback">

@@ -103,8 +103,8 @@
                 </div>
             </div>
             <!-- #END# Exportable Table -->
-            </div>
-        </section>
+        </div>
+    </section>
 @endsection
     @push('scripts')
 

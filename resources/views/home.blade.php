@@ -1,7 +1,7 @@
 
 @extends('layouts.default')
+<div>
 @section('content')
-
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
@@ -575,6 +575,13 @@
         </div>
     </div>
 </section>
-
 @endsection
-
+</div>
+@push('scripts')
+<script src="assets/js/app.min.js"></script>
+<script src="assets/js/chart.min.js"></script>
+<script src="assets/js/bundles/apexcharts/apexcharts.min.js"></script>
+<!-- Custom Js -->
+{{-- <script src="assets/js/admin.js"></script> --}}
+<script src="assets/js/pages/index.js"></script>
+@endpush

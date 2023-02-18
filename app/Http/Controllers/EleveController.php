@@ -21,7 +21,7 @@ class EleveController extends Controller
     public function index()
     {
         $eleves = Eleve::all();
-        
+
         return view('containers.gestion-eleves.eleves.eleves', compact('eleves'));
 
     }
@@ -45,7 +45,7 @@ class EleveController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'matricule' => 'required|string|min:2|max:30',
+            'matricule' => ['required', 'string', 'min:2', 'max:225', Rule::unique('eleves')],
             'nom' => 'required|string|min:2|max:30',
             'prenom' => 'required|string|min:2|max:50',
             'date_de_naissance' => 'nullable|date',
@@ -97,8 +97,9 @@ class EleveController extends Controller
      */
     public function update(Request $request, Eleve $eleve)
     {
+        // \dump($request->all());
         $validate = $request->validate([
-            'matricule' => 'required|string|min:2|max:30',
+            'matricule' => ['required', 'string', 'min:2', 'max:225', Rule::unique('eleves')],
             'nom' => 'required|string|min:2|max:30',
             'prenom' => 'required|string|min:2|max:50',
             'date_de_naissance' => 'nullable|date',
@@ -185,5 +186,13 @@ class EleveController extends Controller
         $msg="Une Année a été suprimé avec succés";
         Alert::alert('Felicitation', $msg);
         return \redirect()->route('eleve.index');
+    }
+
+    public function get_eleve($id_eleve)
+    {
+        $eleve = get_eleve($id_eleve);
+
+        return response()->json($eleve);
+
     }
 }

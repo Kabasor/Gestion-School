@@ -19,6 +19,7 @@
                     </li> --}}
                 </ul>
             </li>
+<!-- Debut des gestions des utilisateurs -->
             <li><a href="#" onClick="return false;" class="menu-toggle">
                 <i data-feather="chevrons-down"></i> <span>Gestoin Utilisateurs</span>
             </a>
@@ -26,56 +27,84 @@
                 <li><a href="@route('user.index')">
                     <i class="fas fa-users"></i></i><span>Liste des utilisateurs</span> </a>
                 </li>
+            </ul>
+<!-- Fin des gestions des utilisateurs -->
 
+<!-- debut des gestions des comptabilité -->
+            <li><a href="#" onClick="return false;" class="menu-toggle">
+                <i data-feather="chevrons-down"></i> <span>Gestoin de Comptablité</span>
+            </a>
+            <ul class="ml-menu">
+                <li><a href="@route('paiementeleve.index')">
+                    <i class="fas fa-users"></i></i><span>paiement des eleves</span> </a>
+                </li>
+                <li><a href="@route('paiementProfesseur.index')">
+                    <i class="fas fa-users"></i></i><span>paeiment professeurs</span></a>
+                </li>
+            </ul>
+            {{-- <ul class="ml-menu">
+
+            </ul> --}}
+<!-- Fin des gestions des comptabilité -->
+
+<!-- debut des gestions des notes -->
+<li><a href="#" onClick="return false;" class="menu-toggle">
+    <i data-feather="chevrons-down"></i> <span>Gestoin des notes</span>
+</a>
+<ul class="ml-menu">
+    <li><a href="@route('note.index')">
+        <i class="fas fa-users"></i></i><span>liste des notes</span> </a>
+    </li>
+</ul>
+<!-- Fin des gestions des notes -->
+<!-- debut des gestions des Emploies -->
+            <li><a href="#" onClick="return false;" class="menu-toggle">
+                <i data-feather="chevrons-down"></i> <span>Gestoin Emploies</span>
+            </a>
+
+            <ul class="ml-menu">
+                <li><a href="@route('emploie.index')">
+                    <i class="fas fa-users"></i></i><span>Liste des emploies</span> </a>
+                </li>
             </ul>
             </li>
+<!-- Fin des gestions des Emploies -->
 
+<!-- debut des gestions des professeurs -->
             <li><a href="#" onClick="return false;" class="menu-toggle">
-                <i class="fas fa-chalkboard-teacher"></i> <span>Gestoin professeurs</span>
+                <i data-feather="chevrons-down"></i><span>Gestoin professeurs</span>
             </a>
             <ul class="ml-menu">
                 <li><a href="@route('prof.index')">
-                    <i class="fab fa-readme"></i><span>Liste des professeurs</span> </a>
+                    <i class="fas fa-chalkboard-teacher"></i><span>  Liste des professeurs</span> </a>
                 </li>
-
             </ul>
             </li>
+<!-- Fin des gestions des professeurs -->
 
+<!-- debut des gestions des Elèves -->
            <li><a href="#" onClick="return false;" class="menu-toggle">
-                    <i data-feather="chevrons-down"></i> <span>Gestoin Elèves</span>
+                    <i data-feather="chevrons-down"></i> <span>Gestion Elèves</span>
                 </a>
                 <ul class="ml-menu">
                     <li><a href="@route('eleve.index')"> <i class="fas fa-arrow-alt-circle-right"></i>  Liste des élèves </a></li>
                     <li><a href="@route('inscription.index')"> <i class="fas fa-arrow-alt-circle-right"></i>  Inscription </a> </li>
                     <li><a href="@route('reinscription.index')"> <i class="fas fa-arrow-alt-circle-right"></i> Reinscription</a></li>
-
-                    {{-- <li><a href="#" onClick="return false;" class="menu-toggle">
-                            <span>Liste des élèves</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li><a href="#" onClick="return false;"> <span>Maternelles</span>  </a></li>
-                            <li><a href="#" onClick="return false;" class="menu-toggle"> <span>Level - 3</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li><a href="#" onClick="return false;"> <span>Level
-                                                - 4</span>
-                                        </a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li> --}}
                 </ul>
            </li>
+<!-- Fin des gestions des Elèves -->
 
+<!-- debut des gestions des Parametrages -->
             <li>
                 <a href="#" onClick="return false;" class="menu-toggle">
-                    {{-- <i data-feather="package"></i> --}}
-                    {{-- <i class="fas fa-cogs"></i> --}}
-                    <i class="fas fa-cog"></i>
-                    <span>Parametrages</span>
+
+                    <i data-feather="chevrons-down"></i><span>Parametrages</span>
                 </a>
                 <ul class="ml-menu">
-                 <li>
+                    <li>
+                        <a href="{{route('matiere.index')}}"><i class="fas fa-chevron-right"></i> Gestion Matière</a>
+                    </li>
+                    <li>
                         <a href="{{route('classe.index')}}"><i class="fas fa-chevron-right"></i> Gestion Classe</a>
                     </li>
                     <li>
@@ -87,7 +116,7 @@
 
                     </li>
                     <li>
-                        <a href="{{route('frais-scolarite.index')}}"><i class="fas fa-chevron-right"></i> Frais de scolarités</a>
+                        <a href="{{route('fraiscolarite.index')}}"><i class="fas fa-chevron-right"></i> Frais de scolarités</a>
                     </li>
                 </ul>
             </li>

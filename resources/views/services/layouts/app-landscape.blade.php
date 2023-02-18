@@ -114,7 +114,7 @@
         <hr style="background-color: rgb(0, 0, 0)">
     </header>
     <p class="text-center" style="font-size: 13px; margin-top: -5px">
-        <strong style="color: #11ABFF">Année Universitaire : </strong> {{ get_last_session()->session }}
+        <strong style="color: #11ABFF">Année Scolaire : </strong> {{ get_last_session()->session }}
     </p>
 
     @yield('content')
